@@ -12,10 +12,10 @@ const Navbar = (props) => {
         </Link>
 
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <Link to='/client'>
+          <Link to='/dashboard/client'>
             <div className='navText'>Client Dash</div>
           </Link>
-          <Link to='/instructor'>
+          <Link to='/dashboard/instructor'>
             <div className='navText'>Instructor Dash</div>
           </Link>
         </div>
