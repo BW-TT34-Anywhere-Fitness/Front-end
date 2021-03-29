@@ -17,7 +17,7 @@ Instructors can take attendance, request and process payments, create virtual â€
 7. Authenticated `user` can reserve a spot in a class with available seats open, and can reschedule or cancel their current `reservation` from the mobile app.
 
 ## ðŸ›  Tech Stack / Frameworks
-- **Front End:** React, JavaScript, React Testing Library
+- **Front End:** React, JavaScript, Axios
 - **Back End:** Node, Express, Knex, Heroku, Postgres
 - **Collab Tools:** GitHub, Slack, Lucidchart
 
