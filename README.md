@@ -22,11 +22,13 @@ Instructors can take attendance, request and process payments, create virtual â€
 - **Collab Tools:** GitHub, Slack, Lucidchart
 
 ## ðŸ’» Dev Team
-- [Back End: Pat Jean](https://github.com/PhatherJean)
-- [Back End: Anthony Catanzariti](https://github.com/apcatanzariti)
-- [Back End: Jiawei Wu](https://github.com/abc1929)
-- [Back End: Chase Snider](https://github.com/jcsnider431)
-- [Front End: Stav Corcos](https://github.com/Poonchy)
-- [Front End: Jonathan Fox](https://github.com/jfox16)
-- [Front End: Matthew Ellis](https://github.com/MatthewEllisTx)
-- [Front End: Spencer Patterson](https://github.com/Spencerp34)
+**Back End**
+- [Pat Jean](https://github.com/PhatherJean)
+- [Anthony Catanzariti](https://github.com/apcatanzariti)
+- [Jiawei Wu](https://github.com/abc1929)
+- [Chase Snider](https://github.com/jcsnider431)
+**Front End**
+- [Stav Corcos](https://github.com/Poonchy)
+- [Jonathan Fox](https://github.com/jfox16)
+- [Matthew Ellis](https://github.com/MatthewEllisTx)
+- [Spencer Patterson](https://github.com/Spencerp34)
