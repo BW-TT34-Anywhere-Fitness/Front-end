@@ -134,14 +134,14 @@ justify-content:space-evenly;
 width:90%;
 `
 const StyledInput = styled.input`
-// height:40px;
-// border-radius:4px;
-// border: 1px solid transparent;
-// border-top:none;
-// border-bottom:1px solid #DDD;
-// box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
-// text-indent:14px;
-// background-color:white;
+height:40px;
+border-radius:4px;
+border: 1px solid transparent;
+border-top:none;
+border-bottom:1px solid #DDD;
+box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+text-indent:14px;
+background-color:white;
 :focus { 
     outline:none;
     border-color:#9ecaed;
