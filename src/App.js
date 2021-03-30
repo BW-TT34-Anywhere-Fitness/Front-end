@@ -10,6 +10,7 @@ import Navbar from 'components/Navbar';
 import Home from 'components/Home';
 import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
+import LandingPage from 'components/LandingPage';
 
 
 
@@ -20,8 +21,9 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/dashboard/client' component={ClientDash} /> 
-          <Route path='/dashboard/instructor' component={InstructorDash} /> 
+          <Route path='/dashboard/client' component={ClientDash} />
+          <Route path='/dashboard/instructor' component={InstructorDash} />
+          <Route path='/landing' component={LandingPage} />
         </Switch>
       </Router>
     </StyledBody>
