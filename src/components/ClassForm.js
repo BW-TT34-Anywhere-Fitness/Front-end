@@ -2,18 +2,24 @@
 import styled from 'styled-components';
 
 import { StyledButton } from 'components/StyledComponents';
+import DateTimeInput from 'components/DateTimeInput';
 
 //@ts-ignore
 import useForm from 'hooks/useForm';
 
 const types = [
-  { value: 'spin', name: "Spin Class" },
-  { value: 'yoga', name: "Yoga" },
-  { value: 'pilates', name: "Pilates" },
-  { value: 'underbox', name: "Underwater Boxing" },
+  { id: 0, name: "Aerobic" },
+  { id: 1, name: "Weight Lifting" },
+  { id: 2, name: "Cardio" },
+  { id: 3, name: "Yoga" },
 ];
-const times = [ 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ];
-const intensities = [ 'Beginner', 'Intermediate', 'Advanced', 'Legendary', 'GODLIKE' ];
+
+const intensities = [ 
+  { id: 0, name: 'Beginner' },
+  { id: 1, name: 'Intermediate' },
+  { id: 2, name: 'Advanced' },
+  { id: 3, name: 'Expert' }
+];
 
 
 
@@ -41,19 +47,14 @@ const InstructorDash = (props) => {
           <select name='type' id='type' value={classData.type} onChange={handleChange}>
             <option disabled value=''> - Select a type - </option>
             {types.map(type => (
-              <option value={type.value} key={type.value}>{type.name}</option>
+              <option value={type.id} key={type.id}>{type.name}</option>
             ))}
           </select>
         </div>
 
         <div className='field'>
           <label htmlFor='time'>Start Time</label>
-          <select name='time' id='time' value={classData.time} onChange={handleChange}>
-            <option disabled value=''> - Select a time - </option>
-            {times.map(time => (
-              <option value={time} key={time}>{formatTime(time)}</option>
-            ))}
-          </select>
+          <DateTimeInput value={classData.dateTime} onChange={handleChange} />
         </div>
 
         <div className='field'>
@@ -66,7 +67,7 @@ const InstructorDash = (props) => {
           <select name='intensity' id='intensity' value={classData.intensity} onChange={handleChange}>
             <option disabled value=''> - Select a level - </option>
             {intensities.map(intensity => (
-              <option value={intensity} key={intensity}>{intensity}</option>
+              <option value={intensity.id} key={intensity.id}>{intensity.name}</option>
             ))}
           </select>
         </div>
@@ -83,27 +84,13 @@ const InstructorDash = (props) => {
 
         <div className='submitButton'>
           <StyledButton size='md'>
-            Add
+            Schedule Class
           </StyledButton>
         </div>
 
       </form>
     </StyledMain>
   );
-}
-
-
-
-function formatTime(time) {
-  if (time <= 11) {
-    return `${time}:00am`;
-  }
-  if (time === 12) {
-    return `12:00pm`;
-  }
-  else {
-    return `${time - 12}:00pm`;
-  }
 }
 
 const StyledMain = styled.div`

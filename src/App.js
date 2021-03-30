@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Navbar from 'components/Navbar';
 import Home from 'components/Home';
+import Navbar from 'components/Navbar';
 import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
 import LandingPage from 'components/LandingPage';
@@ -61,25 +61,6 @@ const StyledBody = styled.div`
   a {
     color: ${props => props.theme.main};
     text-decoration: none;
-  }
-
-  input, select, option, textArea {
-    border: none;
-    background-color: ${props => props.theme.field};
-    color: ${props => props.theme.main};
-    padding: 0 1em;
-
-    :focus {
-      outline: 2px solid ${props => props.theme.selected};
-    }
-  }
-
-  input, select {
-    height: 2.75em;
-  }
-
-  *:focus {
-    outline: 0
   }
 `;
 
