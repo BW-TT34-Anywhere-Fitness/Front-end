@@ -33,7 +33,7 @@ function App() {
 const StyledBody = styled.div`
   box-sizing: border-box;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
-  color: ${props => props.theme.main};
+  color: white;
   font-size: 17pt;
   font-weight: 300;
   letter-spacing: 0.025em;
