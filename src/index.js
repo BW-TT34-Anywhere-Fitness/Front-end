@@ -5,15 +5,9 @@ import './normalize.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { ThemeProvider } from 'styled-components';
-
 //styled components theme
-const theme = {
-  background: '#242943', // dark grey
-  componentBackground: '#2a2f4a', // lighter grey
-  main: '#ffffff', // white
-  selected: '#53e3fb' // light blue
-};
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
