@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 import { StyledButton } from 'components/StyledComponents';
+import DateTimeInput from 'components/DateTimeInput';
 
 //@ts-ignore
 import useForm from 'hooks/useForm';
@@ -12,7 +13,6 @@ const types = [
   { value: 'pilates', name: "Pilates" },
   { value: 'underbox', name: "Underwater Boxing" },
 ];
-const times = [ 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ];
 const intensities = [ 'Beginner', 'Intermediate', 'Advanced', 'Legendary', 'GODLIKE' ];
 
 
@@ -48,12 +48,7 @@ const InstructorDash = (props) => {
 
         <div className='field'>
           <label htmlFor='time'>Start Time</label>
-          <select name='time' id='time' value={classData.time} onChange={handleChange}>
-            <option disabled value=''> - Select a time - </option>
-            {times.map(time => (
-              <option value={time} key={time}>{formatTime(time)}</option>
-            ))}
-          </select>
+          <DateTimeInput value={classData.dateTime} onChange={handleChange} />
         </div>
 
         <div className='field'>
@@ -83,27 +78,13 @@ const InstructorDash = (props) => {
 
         <div className='submitButton'>
           <StyledButton size='md'>
-            Add
+            Schedule Class
           </StyledButton>
         </div>
 
       </form>
     </StyledMain>
   );
-}
-
-
-
-function formatTime(time) {
-  if (time <= 11) {
-    return `${time}:00am`;
-  }
-  if (time === 12) {
-    return `12:00pm`;
-  }
-  else {
-    return `${time - 12}:00pm`;
-  }
 }
 
 const StyledMain = styled.div`

@@ -7,7 +7,7 @@ import ClassForm from 'components/ClassForm';
 const initialClassData = {
   name: '',
   type: '',
-  time: '',
+  dateTime: '',
   duration: '',
   intensity: '',
   location: '',
