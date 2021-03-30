@@ -29,11 +29,10 @@ const DateTimeInput = (props) => {
       <Datetime
         onChange={handleChange}
         isValidDate={noPastDates}
-        initialViewDate={moment()}
         inputProps={{
           placeholder: '- Select a date & time below -',
         }}
-        value={moment.utc(value, localDateTimeFormat)}
+        value={value ? moment.utc(value, localDateTimeFormat) : moment()}
       />
     </StyledMain>
   );
@@ -45,6 +44,7 @@ const StyledMain = styled.div`
     background-color: ${props => props.theme.field};
     padding: 0.5em;
     margin-top: 0.25em;
+    text-align: center;
   }
 
   .rdtYear, .rdtMonth, .rdtDay, .rdtBtn, .rdtPrev, .rdtNext, .rdtSwitch, .rdtTimeToggle {
@@ -74,7 +74,6 @@ const StyledMain = styled.div`
   .rdtCounters {
     display: flex;
     align-items: center;
-    text-align: center;
 
     .rdtCounter {
       padding-left: 0.25em;

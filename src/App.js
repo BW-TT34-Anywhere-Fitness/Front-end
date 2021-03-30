@@ -62,25 +62,6 @@ const StyledBody = styled.div`
     color: ${props => props.theme.main};
     text-decoration: none;
   }
-
-  input, select, option, textArea {
-    border: none;
-    background-color: ${props => props.theme.field};
-    color: ${props => props.theme.main};
-    padding: 0 1em;
-
-    :focus {
-      outline: 2px solid ${props => props.theme.selected};
-    }
-  }
-
-  input, select {
-    height: 2.75em;
-  }
-
-  *:focus {
-    outline: 0
-  }
 `;
 
 export default App;
