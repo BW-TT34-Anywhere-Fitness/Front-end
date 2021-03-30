@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logotemp from '../gymlogotemp.jpg';
+import axios from 'axios';
+const initialValues = {
+    credentials: {
+        username: '',
+        password: '',
+    }
 
+}
 
 const LandingPage = () => {
+    const [creds, setCreds] = useState(initialValues)
+
+    const handleChange = e => {
+        setCreds({
+            credentials: {
+                ...creds.credentials,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    const handleSubmit = e => {
+        e.preventDefault()
+        axios
+            .post('http://xnor.space/api/authenticate', creds.credentials)
+            .then(res => {
+                console.log(res.data)
+                localStorage.setItem('token', res.data.payload)
+                window.location.href = '/'
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }
 
 
     return (
@@ -17,17 +48,22 @@ const LandingPage = () => {
                 </StyledAbout>
                 <StyledFormBox>
                     <FormCenterHorz>
-                        <StyledForm>
+                        <StyledForm onSubmit={handleSubmit}>
 
                             <StyledFSep>
                                 <StyledInput
                                     type="text"
-
+                                    name='username'
+                                    value={creds.credentials.username}
+                                    onChange={handleChange}
                                 />
                             </StyledFSep>
                             <StyledFSep>
                                 <StyledInput
                                     type="password"
+                                    name="password"
+                                    value={creds.credentials.password}
+                                    onChange={handleChange}
                                 />
                             </StyledFSep>
                             <StyledButton>
