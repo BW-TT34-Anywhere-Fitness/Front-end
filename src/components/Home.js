@@ -1,10 +1,11 @@
-// import AuthPage from './authPage.js'
+
+import LandingPage from 'components/LandingPage';
+
+
+
 const Home = (props) => {
   return (
-    <>
-        <div>This is Home</div>
-        {/* <AuthPage /> */}
-    </>
+    <LandingPage />
   );
 }
 
