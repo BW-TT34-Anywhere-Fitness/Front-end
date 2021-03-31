@@ -2,8 +2,8 @@
 const Home = (props) => {
   return (
     <>
-      <div>This is Home</div>
-      {/* <AuthPage /> */}
+        <div>This is Home</div>
+        {/* <AuthPage /> */}
     </>
   );
 }

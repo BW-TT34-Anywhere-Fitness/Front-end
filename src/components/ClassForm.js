@@ -8,18 +8,12 @@ import DateTimeInput from 'components/DateTimeInput';
 import useForm from 'hooks/useForm';
 
 const types = [
-  { id: 0, name: "Aerobic" },
-  { id: 1, name: "Weight Lifting" },
-  { id: 2, name: "Cardio" },
-  { id: 3, name: "Yoga" },
+  { value: 'spin', name: "Spin Class" },
+  { value: 'yoga', name: "Yoga" },
+  { value: 'pilates', name: "Pilates" },
+  { value: 'underbox', name: "Underwater Boxing" },
 ];
-
-const intensities = [ 
-  { id: 0, name: 'Beginner' },
-  { id: 1, name: 'Intermediate' },
-  { id: 2, name: 'Advanced' },
-  { id: 3, name: 'Expert' }
-];
+const intensities = [ 'Beginner', 'Intermediate', 'Advanced', 'Legendary', 'GODLIKE' ];
 
 
 
@@ -47,7 +41,7 @@ const InstructorDash = (props) => {
           <select name='type' id='type' value={classData.type} onChange={handleChange}>
             <option disabled value=''> - Select a type - </option>
             {types.map(type => (
-              <option value={type.id} key={type.id}>{type.name}</option>
+              <option value={type.value} key={type.value}>{type.name}</option>
             ))}
           </select>
         </div>
@@ -67,7 +61,7 @@ const InstructorDash = (props) => {
           <select name='intensity' id='intensity' value={classData.intensity} onChange={handleChange}>
             <option disabled value=''> - Select a level - </option>
             {intensities.map(intensity => (
-              <option value={intensity.id} key={intensity.id}>{intensity.name}</option>
+              <option value={intensity} key={intensity}>{intensity}</option>
             ))}
           </select>
         </div>

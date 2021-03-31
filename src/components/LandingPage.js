@@ -200,7 +200,7 @@ flex-direction:column;
 `
 const StyledButton = styled.button`
 display:flex;
-height 40px;
+height: 40px;
 width:100%;
 align-items:center;
 justify-content:center;
