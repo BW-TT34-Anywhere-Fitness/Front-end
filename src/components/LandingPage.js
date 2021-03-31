@@ -1,10 +1,47 @@
-import React from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logotemp from '../gymlogotemp.jpg';
+import axios from 'axios';
+const initialValues = {
+    credentials: {
+        username: '',
+        password: '',
+    }
 
+}
 
 const LandingPage = () => {
+    const [creds, setCreds] = useState(initialValues)
+
+    const handleChange = e => {
+        setCreds({
+            credentials: {
+                ...creds.credentials,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    const handleSubmit = e => {
+        e.preventDefault()
+        axios
+            .post('http://xnor.space/api/authenticate', creds.credentials)
+            .then(res => {
+                console.log(res.data)
+                localStorage.setItem('token', res.data.payload)
+                window.location.href = '/'
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+    }
+
+    const goToRegister = e => {
+        e.preventDefault()
+        console.log('no register yet, better make one!!')
+
+    }
 
 
     return (
@@ -17,17 +54,22 @@ const LandingPage = () => {
                 </StyledAbout>
                 <StyledFormBox>
                     <FormCenterHorz>
-                        <StyledForm>
+                        <StyledForm onSubmit={handleSubmit}>
 
                             <StyledFSep>
                                 <StyledInput
                                     type="text"
-
+                                    name='username'
+                                    value={creds.credentials.username}
+                                    onChange={handleChange}
                                 />
                             </StyledFSep>
                             <StyledFSep>
                                 <StyledInput
                                     type="password"
+                                    name="password"
+                                    value={creds.credentials.password}
+                                    onChange={handleChange}
                                 />
                             </StyledFSep>
                             <StyledButton>
@@ -41,7 +83,7 @@ const LandingPage = () => {
                         </StyledForm>
                     </FormCenterHorz>
                     <FormCenterHorzB>
-                        <StyledForm>
+                        <StyledForm onSubmit={goToRegister}>
 
 
 
@@ -73,6 +115,9 @@ export default LandingPage
 const StyledContainer = styled.div`
 display:flex;
 justify-content:center;
+header{
+    display: none
+}
 
 `
 const StyledBody = styled.div`
@@ -134,14 +179,14 @@ justify-content:space-evenly;
 width:90%;
 `
 const StyledInput = styled.input`
-// height:40px;
-// border-radius:4px;
-// border: 1px solid transparent;
-// border-top:none;
-// border-bottom:1px solid #DDD;
-// box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
-// text-indent:14px;
-// background-color:white;
+height:40px;
+border-radius:4px;
+border: 1px solid transparent;
+border-top:none;
+border-bottom:1px solid #DDD;
+box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+text-indent:14px;
+background-color:white;
 :focus { 
     outline:none;
     border-color:#9ecaed;
@@ -179,7 +224,9 @@ border-bottom: 1px solid #dadde1;
 `
 /*ABOUT LAYOUT STYLES BELOW*/
 const StyledPicBox = styled.div`
-
+@media(max-width:796px) {
+    display: none;
+}
 `
 const StyledImg = styled.img`
 width:350px;

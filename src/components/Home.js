@@ -1,9 +1,9 @@
-import AuthPage from './authPage.js'
+// import AuthPage from './authPage.js'
 const Home = (props) => {
   return (
     <>
-        <div>This is Home</div>
-        <AuthPage />
+      <div>This is Home</div>
+      {/* <AuthPage /> */}
     </>
   );
 }
