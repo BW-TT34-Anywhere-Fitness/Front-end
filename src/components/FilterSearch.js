@@ -166,6 +166,7 @@ export default function FilterSearch(props){
             <DateTimeInput
               id='dateFrom'
               placeholder='Any'
+              background='none'
               value={filter.dateFrom}
               onChange={onChange}
             />
@@ -178,6 +179,7 @@ export default function FilterSearch(props){
             <DateTimeInput
               id='dateTo'
               placeholder='Any'
+              background='none'
               value={filter.dateTo}
               onChange={onChange}
             />
@@ -275,6 +277,21 @@ const StyledMain = styled.div`
     display: inline-block;
     transform: rotate(${ props => props.showDate ? '0deg' : '180deg'});
     transition: transform 0.3s;
+  }
+
+  input, select, option, textArea {
+    border: none;
+    background-color: ${props => props.theme.field};
+    color: ${props => props.theme.main};
+    padding: 0 1em;
+
+    :focus {
+      outline: 2px solid ${props => props.theme.selected};
+    }
+  }
+
+  input, select {
+    height: 2.75em;
   }
 `
 

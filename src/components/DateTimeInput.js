@@ -27,7 +27,7 @@ const DateTimeInput = (props) => {
   };
 
   return (
-    <StyledMain>
+    <StyledMain background={props.background}>
       <Datetime
         onChange={handleChange}
         isValidDate={noPastDates}
@@ -43,7 +43,7 @@ const DateTimeInput = (props) => {
 const StyledMain = styled.div`
 
   table {
-    background-color: ${props => props.theme.field};
+    background-color: ${props => props.background ? '#242943' : props.theme.field};
     padding: 0.5em;
     margin-top: 0.25em;
     text-align: center;
