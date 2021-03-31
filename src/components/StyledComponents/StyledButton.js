@@ -6,7 +6,7 @@ import styled from 'styled-components';
  * variant options: filled, outlined
  */
 export const StyledButton = (props) => {
-  const { children, size='md', variant='filled', fit } = props;
+  const { children, size = 'md', variant = 'filled', fit } = props;
 
   return (
     <StyledMain style={{ width: fit && '100%' }}>
