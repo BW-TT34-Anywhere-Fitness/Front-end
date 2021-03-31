@@ -1,4 +1,6 @@
 
+import { useEffect } from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,9 +14,24 @@ import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
 import LandingPage from 'components/LandingPage';
 
+import { login } from 'functions/api';
+
 
 
 function App() {
+
+  useEffect(() => {
+    login({ username: 'user', password: 'user' })
+    .then(res => {
+      if (res?.data?.id_token) {
+        localStorage.setItem('token', res.data.id_token);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }, []);
+
   return (
     <StyledBody>
       <Router>
