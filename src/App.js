@@ -75,9 +75,6 @@ const StyledBody = styled.div`
     height: 2.75em;
   }
 
-  *:focus {
-    outline: 0
-  }
 `;
 
 export default App;

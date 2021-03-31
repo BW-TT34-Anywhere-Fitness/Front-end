@@ -12,10 +12,12 @@ const DateTimeInput = (props) => {
     onChange({
       target: {
         name: 'dateTime',
+        id: props.id,
         value: date.valueOf()
       }
     });
   }
+  console.log(value)
 
   const yesterday = moment().subtract(1, 'day');
   const noPastDates = current => {
@@ -29,7 +31,7 @@ const DateTimeInput = (props) => {
         isValidDate={noPastDates}
         initialViewDate={moment()}
         inputProps={{
-          placeholder: '- Select a date & time below -',
+          placeholder: props.placeholder ? props.placeholder : '- Select a date & time below -',
         }}
         value={value}
       />
@@ -41,6 +43,10 @@ const StyledMain = styled.div`
 
   .form-input {
 
+  }
+
+  select {
+    text-align-last: center;
   }
 
   .rdtYear, .rdtMonth, .rdtDay, .rdtBtn, .rdtPrev, .rdtNext, .rdtSwitch, .rdtTimeToggle {
