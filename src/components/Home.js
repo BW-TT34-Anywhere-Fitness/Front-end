@@ -1,7 +1,7 @@
 import LoginForm from './Login.js'
 import SignUpForm from './SignUp.js'
-
 import styled from 'styled-components'
+
 const Home = (props) => {
   return (
     <>

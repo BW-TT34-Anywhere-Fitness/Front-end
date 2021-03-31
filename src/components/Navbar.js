@@ -15,6 +15,7 @@ const Navbar = (props) => {
           <Link to='/dashboard/client'>
             <div className='navText'>Client Dash</div>
           </Link>
+          
           <Link to='/dashboard/instructor'>
             <div className='navText'>Instructor Dash</div>
           </Link>
@@ -27,7 +28,7 @@ const Navbar = (props) => {
 
 const StyledNavbar = styled.header`
   padding: 20px;
-  background: ${props => props.theme.componentBackground};
+  background: ${props => props.theme.field};
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15);
 
   .navText {
