@@ -90,6 +90,9 @@ export default function FilterSearch(props){
       .then( res => {
         console.log(res)
       })
+      .catch( err => {
+        console.log(err.response)
+      })
   }
 
   function clear(evt){
