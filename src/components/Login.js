@@ -1,88 +1,103 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
-export default function SignUpForm() {
+export default function LoginForm() {
     const [formValues, setFormValues] = useState({username:"", password:""})
-    const [ focus, setFocus ] = useState({username:false, password:false})
 
     const handleChange= (e) => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
     }
     const formSubmit = (e) => {
         e.preventDefault();
-    }
-
-    function onFocus(evt) {
-        const { name } = evt.target
-        setFocus({ ...focus, [name]: true })
-    }
-    
-    function onBlur(evt) {
-        const { name } = evt.target
-        const value = formValues[name] === '' ? false : true
-        setFocus({...focus, [name]: value});
+        axios.post("http://xnor.space/api/authenticate", formValues)
+        .then((res)=>{
+            console.log(res)
+            localStorage.setItem("token", res.data.id_token)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
     
-
     return (
         <FormFieldsetStyled onSubmit = {formSubmit}>
             <h1>Login</h1>
-            <LabelStyled focus={focus.username} htmlFor ='username'>Username</LabelStyled>
+            <LabelStyled htmlFor ='login_username'>Username</LabelStyled>
             <InputStyled
-                id='username'
+                id='login_username'
                 type = "text"
                 name = "username"
                 value = {formValues.username}
                 onChange = {handleChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
             />
-            <LabelStyled focus={focus.password} htmlFor ='password'>Password</LabelStyled>
+            <br/>
+            <LabelStyled htmlFor ='login_password'>Password</LabelStyled>
             <InputStyled
-                id='password'
+                id='login_password'
                 type = "password"
                 name = "password"
                 value = {formValues.password}
                 onChange = {handleChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
             />
+            <br/>
+            <SubmitStyled>Submit</SubmitStyled>
         </FormFieldsetStyled>
     )
 }
 
 const FormFieldsetStyled = styled.form`
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin: 10px 0px;
-  padding: 10px;
-  display: inline-block;
-  text-align: left;
-  width: 300px;
-  font-family: "Source Sans Pro", Helvetica,sans-serif;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 10px 15px;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    text-align: left;
+    font-family: "Source Sans Pro", Helvetica,sans-serif;
+    h1 {
+        font-size: 1.5em;
+    }
 `
 const LabelStyled = styled.label`
-  font-size: 20px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  display:block;
-  white-space: nowrap;
-  color: white;
-  font-weight: ${props => {
-    return props.focus ? 'bolder' : 'lighter'
-  }};
-  line-height: 1;
-  padding: 0 3px;
-  top: 0;
-  transition: 0.15s;
+    color: #ffffff;
+    display: block;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
 `
 const InputStyled = styled.input`
-  font-size: 20px;
-  white-space: nowrap;
-  display:block;
-  margin: 5px 0px;
-  border: none;
-  font-size: 20px;
-  outline: none;
-  width: 250px;
+    height: 2.75em;
+    appearance: none;
+    background: rgba(212, 212, 255, 0.035);
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 100%;
+`
+const SubmitStyled = styled.button`
+    appearance: none;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 2px #ffffff;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: 600;
+    height: 3.5em;
+    letter-spacing: 0.25em;
+    line-height: 3.5em;
+    padding: 0 1.75em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
 `
