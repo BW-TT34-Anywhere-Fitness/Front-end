@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { StyledTitle } from 'components/StyledComponents';
 import ClassForm from 'components/ClassForm';
+import ClassList from 'components/ClassList';
 
 import { createClass } from 'functions/api';
 
@@ -41,6 +42,8 @@ const InstructorDash = (props) => {
 
       <ClassForm onSubmit={handleSubmit} initialValue={initialClassData} />
 
+      <ClassList />
+
     </StyledMain>
   );
 }
@@ -49,6 +52,7 @@ const StyledMain = styled.section`
   max-width: 1400px;
   margin: auto;
   padding-bottom: 10em;
+  padding: 1em;
 
   input, select, option, textArea {
     border: none;

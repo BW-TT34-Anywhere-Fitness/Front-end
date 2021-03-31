@@ -7,13 +7,6 @@ import DateTimeInput from 'components/DateTimeInput';
 //@ts-ignore
 import useForm from 'hooks/useForm';
 
-// const types = [
-//   { id: 0, name: "Aerobic" },
-//   { id: 1, name: "Weight Lifting" },
-//   { id: 2, name: "Cardio" },
-//   { id: 3, name: "Yoga" },
-// ];
-
 const intensities = [ 
   { id: 0, name: 'Beginner' },
   { id: 1, name: 'Intermediate' },
@@ -44,12 +37,6 @@ const InstructorDash = (props) => {
 
         <div className='field'>
           <label htmlFor='type'>Class Type</label>
-          {/* <select name='type' id='type' value={classData.type} onChange={handleChange}>
-            <option disabled value=''> - Select a type - </option>
-            {types.map(type => (
-              <option value={type.id} key={type.id}>{type.name}</option>
-            ))}
-          </select> */}
           <input id='type' name='type' type='text' onChange={handleChange} value={classData.type} placeholder="Enter a class type (e.g. Aerobic, Cardio, Yoga)" />
         </div>
 

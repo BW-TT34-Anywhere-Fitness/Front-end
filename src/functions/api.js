@@ -13,3 +13,7 @@ export const login = ({ username, password }) => {
 export const createClass = (classData) => {
   return axiosWithAuth().post(BASE_URL + '/api/courses', classData);
 }
+
+export const getClasses = () => {
+  return axiosWithAuth().get(BASE_URL + '/api/courses');
+}
