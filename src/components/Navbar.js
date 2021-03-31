@@ -15,6 +15,7 @@ const Navbar = (props) => {
           <Link to='/dashboard/client'>
             <div className='navText'>Client Dash</div>
           </Link>
+          
           <Link to='/dashboard/instructor'>
             <div className='navText'>Instructor Dash</div>
           </Link>
