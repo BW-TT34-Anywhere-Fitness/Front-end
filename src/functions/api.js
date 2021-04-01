@@ -2,7 +2,7 @@
 import axios from 'axios';
 import axiosWithAuth from 'functions/axiosWithAuth';
 
-const BASE_URL = 'http://xnor.space';
+const BASE_URL = 'https://xnor.space';
 
 
 

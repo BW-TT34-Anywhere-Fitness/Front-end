@@ -1,14 +1,16 @@
 import axios from 'axios'
 import React, {useState} from 'react'
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
-
-import { StyledButton } from 'components/StyledComponents';
 
 import { signUp } from 'functions/api';
 
 export default function SignUpForm() {
     const [formValues, setFormValues] = useState({login:"", password:"",email:"", accounttype:"student"})
+    const [ isLoading, setIsLoading ] = useState(false);
     const [ success, setSuccess ] = useState(false);
+
+    const history = useHistory();
 
     const handleChange= (e) => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
@@ -16,6 +18,7 @@ export default function SignUpForm() {
     const formSubmit = (e) => {
         e.preventDefault();
         console.log(formValues);
+        setIsLoading(true);
         signUp(formValues)
             .then(res => {
                 console.log(res);
@@ -23,10 +26,18 @@ export default function SignUpForm() {
             })
             .catch(err => {
                 console.log(err);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }
 
+    const backToLogin = () => {
+        history.push('/');
+    }
+
     return (
+        <>
         <FormFieldsetStyled onSubmit = {formSubmit}>
             <h1>Sign Up</h1>
             <LabelStyled htmlFor ='signup_login'>Username</LabelStyled>
@@ -36,6 +47,7 @@ export default function SignUpForm() {
                 name = "login"
                 value = {formValues.login}
                 onChange = {handleChange}
+                disabled={isLoading}
             />
             <br/>
             <LabelStyled htmlFor ='signup_email'>Email</LabelStyled>
@@ -45,6 +57,7 @@ export default function SignUpForm() {
                 name = "email"
                 value = {formValues.email}
                 onChange = {handleChange}
+                disabled={isLoading}
             />
             <br/>
             <LabelStyled htmlFor ='signup_password'>Password</LabelStyled>
@@ -54,12 +67,14 @@ export default function SignUpForm() {
                 name = "password"
                 value = {formValues.password}
                 onChange = {handleChange}
+                disabled={isLoading}
             />
             <br/>
             <SelectStyled
             id = "signup_role"
             name = "accounttype"
-            onChange={handleChange}>
+            onChange={handleChange}
+            disabled={isLoading}>
                 <option
                 value = "student"
                 >Student</option>
@@ -68,9 +83,13 @@ export default function SignUpForm() {
                 >Instructor</option>
             </SelectStyled>
             <br/>
-            <SubmitStyled>Submit</SubmitStyled>
-            {success && <h4>Sign up successful!</h4>}
+            {!success && <SubmitStyled disabled={isLoading}>Submit</SubmitStyled>}
         </FormFieldsetStyled>
+        {success && <>
+            <h4>Sign up successful!</h4>
+            <SubmitStyled onClick={backToLogin}>Back to Login</SubmitStyled>
+        </>}
+        </>
     )
 }
 

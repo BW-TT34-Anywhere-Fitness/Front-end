@@ -6,6 +6,7 @@ import natesgif from '../gifultra.gif';
 import banner1 from '../girltrainersquat.jpg';
 import axios from 'axios';
 import UserContext from 'contexts/UserContext';
+import { login } from 'functions/api';
 const initialValues = {
     credentials: {
         username: 'testinstructor',
@@ -39,8 +40,7 @@ const LandingPage = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         setError('');
-        axios
-            .post('http://xnor.space/api/authenticate', creds.credentials)
+        login(creds.credentials)
             .then(res => {
                 console.log(res);
                 localStorage.setItem('token', res.data.id_token);
