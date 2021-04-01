@@ -2,21 +2,28 @@ import axios from 'axios'
 import React, {useState} from 'react'
 import styled from 'styled-components'
 
+import { StyledButton } from 'components/StyledComponents';
+
+import { signUp } from 'functions/api';
+
 export default function SignUpForm() {
     const [formValues, setFormValues] = useState({login:"", password:"",email:"", accounttype:"student"})
+    const [ success, setSuccess ] = useState(false);
 
     const handleChange= (e) => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
     }
     const formSubmit = (e) => {
         e.preventDefault();
-        axios.post("https://xnor.space/api/register", formValues)
-        .then((res)=>{
-            console.log(res)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+        console.log(formValues);
+        signUp(formValues)
+            .then(res => {
+                console.log(res);
+                setSuccess(true);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     return (
@@ -62,6 +69,7 @@ export default function SignUpForm() {
             </SelectStyled>
             <br/>
             <SubmitStyled>Submit</SubmitStyled>
+            {success && <h4>Sign up successful!</h4>}
         </FormFieldsetStyled>
     )
 }

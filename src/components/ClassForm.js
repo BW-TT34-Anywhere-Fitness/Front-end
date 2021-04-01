@@ -4,16 +4,7 @@ import styled from 'styled-components';
 import { StyledButton } from 'components/StyledComponents';
 import DateTimeInput from 'components/DateTimeInput';
 
-//@ts-ignore
 import useForm from 'hooks/useForm';
-
-const types = [
-  { value: 'spin', name: "Spin Class" },
-  { value: 'yoga', name: "Yoga" },
-  { value: 'pilates', name: "Pilates" },
-  { value: 'underbox', name: "Underwater Boxing" },
-];
-const intensities = ['Beginner', 'Intermediate', 'Advanced', 'Legendary', 'GODLIKE'];
 
 
 
@@ -33,17 +24,12 @@ const InstructorDash = (props) => {
 
         <div className='field'>
           <label htmlFor='name'>Class Name</label>
-          <input id='name' name='name' type='text' onChange={handleChange} value={classData.name} />
+          <input id='name' name='name' type='text' onChange={handleChange} value={classData.name} placeholder="Enter a name for your class" />
         </div>
 
         <div className='field'>
           <label htmlFor='type'>Class Type</label>
-          <select name='type' id='type' value={classData.type} onChange={handleChange}>
-            <option disabled value=''> - Select a type - </option>
-            {types.map(type => (
-              <option value={type.value} key={type.value}>{type.name}</option>
-            ))}
-          </select>
+          <input id='type' name='type' type='text' onChange={handleChange} value={classData.type} placeholder="Enter a class type (e.g. Aerobic, Cardio, Yoga)" />
         </div>
 
         <div className='field'>
@@ -60,15 +46,15 @@ const InstructorDash = (props) => {
           <label htmlFor='intensity'>Intensity</label>
           <select name='intensity' id='intensity' value={classData.intensity} onChange={handleChange}>
             <option disabled value=''> - Select a level - </option>
-            {intensities.map(intensity => (
+            {[ ...Array(10).keys() ].map(intensity => (
               <option value={intensity} key={intensity}>{intensity}</option>
             ))}
           </select>
         </div>
 
         <div className='field'>
-          <label htmlFor='location'>Location</label>
-          <input id='location' name='location' type='text' onChange={handleChange} value={classData.location} />
+          <label htmlFor='location'>Location (zip code)</label>
+          <input id='location' name='location' type='number' onChange={handleChange} value={classData.location} />
         </div>
 
         <div className='field'>

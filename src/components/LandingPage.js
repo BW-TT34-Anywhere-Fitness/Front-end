@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logotemp from '../gymlogotemp.jpg';
 import natesgif from '../gifultra.gif';
 import banner1 from '../girltrainersquat.jpg';
 import axios from 'axios';
+import UserContext from 'contexts/UserContext';
 const initialValues = {
     credentials: {
         username: 'testinstructor',
@@ -13,8 +14,19 @@ const initialValues = {
 
 }
 
-const LandingPage = () => {
-    const [creds, setCreds] = useState(initialValues)
+const errorCodeMessages = {
+    default: 'Error logging in.',
+    401: "Login info not found. You may need to create an account.",
+}
+
+const LandingPage = (props) => {
+
+    const { updateUser } = useContext(UserContext);
+
+    const [creds, setCreds] = useState(initialValues);
+    const [ error, setError ] = useState('');
+
+    const history = useHistory();
 
     const handleChange = e => {
         setCreds({
@@ -25,25 +37,36 @@ const LandingPage = () => {
         })
     }
     const handleSubmit = e => {
-        e.preventDefault()
-        console.log(creds)
+        e.preventDefault();
+        setError('');
         axios
             .post('http://xnor.space/api/authenticate', creds.credentials)
             .then(res => {
-                console.log(res.data)
-                localStorage.setItem('token', res.data.id_token)
-                // window.location.href = '/'
+                console.log(res);
+                localStorage.setItem('token', res.data.id_token);
+                updateUser();
+                history.push('/dashboard');
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.response);
+
+                let errorMessage = errorCodeMessages.default;
+                if (err.response) {
+                    if (errorCodeMessages[err.response?.status]) {
+                        errorMessage = errorCodeMessages[err.response.status];
+                    }
+                }
+                else {
+                    errorMessage = 'Error connecting to the server.';
+                }
+                setError(errorMessage);
             })
 
     }
 
     const goToRegister = e => {
         e.preventDefault()
-        console.log('no register yet, better make one!!')
-        window.location.href = '/home'
+        history.push('/signup');
     }
 
 
@@ -101,6 +124,8 @@ const LandingPage = () => {
                                     <StyleP>Create New Account</StyleP>
                                 </StyledButton>
 
+                                {error && <StyledError>{error}</StyledError>}
+
 
                             </StyledForm>
                         </FormCenterHorzB>
@@ -114,7 +139,6 @@ const LandingPage = () => {
 
                 </StyledAboutTwo>
             </StyledBannerOne>
-
 
 
             <StyledFooter>
@@ -275,6 +299,10 @@ border-radius:4px;
 webkit-filter: drop-shadow(5px 5px 5px #222);
 filter: drop-shadow(5px 5px 5px #222);
 `
+
+const StyledError = styled.p`
+    color: red;
+`;
 
 /*BODY2 ABOUT STYLES BELOW */
 

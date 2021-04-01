@@ -1,3 +1,6 @@
+
+import { useEffect, useState } from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,24 +9,69 @@ import {
 import styled from 'styled-components';
 
 import Home from 'components/Home';
+import SignUp from 'components/SIgnUp';
 import Navbar from 'components/Navbar';
-import ClientDash from 'components/ClientDash/ClientDash';
+import Dashboard from 'components/Dashboard';
+import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
-import LandingPage from 'components/LandingPage';
+
+import PrivateRoute from 'components/PrivateRoute';
+
+import UserContext from 'contexts/UserContext';
+import { getSelf } from 'functions/api';
+
+
 
 function App() {
+
+  const [ currentUser, setCurrentUser ] = useState(null);
+
+  useEffect(() => {
+    console.log('UserContext.currentUser:', currentUser);
+  }, [ currentUser ]);
+
+  useEffect(() => {
+    // When page is first opened, check for a previously logged in user.
+    updateUser();
+  }, []);
+
+  const logOut = () => {
+    localStorage.removeItem('token');
+    setCurrentUser(null);
+  }
+
+  const updateUser = () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      getSelf()
+        .then(res => {
+          setCurrentUser(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    else {
+      console.log('no token');
+    }
+  }
+
   return (
+    <UserContext.Provider value={{ currentUser, updateUser, logOut }}>
     <StyledBody>
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path='/home' component={Home} />
-          <Route path='/dashboard/client' component={ClientDash} />
-          <Route path='/dashboard/instructor' component={InstructorDash} />
-          <Route path='/' component={LandingPage} />
+          <Route exact path='/' component={Home} />
+          <Route path='/signup' component={SignUp} />
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute path='/dashboard/client' component={ClientDash} />
+          <PrivateRoute path='/dashboard/instructor' component={InstructorDash} />
         </Switch>
       </Router>
     </StyledBody>
+    </UserContext.Provider>
   );
 }
 

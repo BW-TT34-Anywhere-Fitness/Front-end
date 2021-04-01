@@ -2,14 +2,14 @@
 import styled from 'styled-components';
 
 /**
- * size options: lg, md, sm, fit
+ * size options: lg, md, sm
  * variant options: filled, outlined
  */
 export const StyledButton = (props) => {
-  const { children, size = 'md', variant = 'filled', fit } = props;
+  const { children, size = 'md', variant = 'filled', fit, style={} } = props;
 
   return (
-    <StyledMain style={{ width: fit && '100%' }}>
+    <StyledMain style={{ width: fit && '100%', ...style }}>
       <button className={`${size} ${variant} ${fit ? 'fit' : ''}`}>
         {children}
       </button>
