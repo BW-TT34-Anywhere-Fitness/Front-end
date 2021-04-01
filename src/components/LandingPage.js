@@ -22,7 +22,7 @@ const errorCodeMessages = {
 
 const LandingPage = (props) => {
 
-    const { updateUser } = useContext(UserContext);
+    const { currentUser, updateUser } = useContext(UserContext);
 
     const [creds, setCreds] = useState(initialValues);
     const [ error, setError ] = useState('');
@@ -83,6 +83,7 @@ const LandingPage = (props) => {
                     </StyledAbout>
                     <StyledFormBox>
                         <FormCenterHorz>
+                            {!currentUser ?
                             <StyledForm onSubmit={handleSubmit}>
 
                                 <StyledFSep>
@@ -110,6 +111,11 @@ const LandingPage = (props) => {
 
 
                             </StyledForm>
+                            :
+                            <StyledTextBox>
+                                <StylePDark>You're already logged in!</StylePDark>
+                            </StyledTextBox>
+                            }
                         </FormCenterHorz>
                         <FormCenterHorzB>
                             <StyledForm onSubmit={goToRegister}>
