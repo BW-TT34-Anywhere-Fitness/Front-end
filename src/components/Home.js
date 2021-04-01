@@ -1,10 +1,11 @@
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components'
 import { useHistory } from 'react-router-dom';
 
 import LandingPage from 'components/LandingPage';
 
-import { getSelf } from 'functions/api';
+import UserContext from 'contexts/UserContext';
 
 
 
@@ -12,50 +13,29 @@ import { getSelf } from 'functions/api';
  * Home checks for a token in localStorage and redirects them to the right page.
  * If no token, it shows landing page. If yes token, it takes user to Dashboard.
  */
+
 const Home = (props) => {
 
-  const [ isLoading, setIsLoading ] = useState(true);
-  const [ error, setError ] = useState('');
+  const { currentUser } = useContext(UserContext);
 
   const history = useHistory();
 
   useEffect(() => {
-    redirectUser();
+    if (currentUser) {
+      history.push('/dashboard');
+    }
   });
-
-  const redirectUser = async () => {
-
-    setIsLoading(true);
-
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-      console.log('No token found in localStorage.');
-      setIsLoading(false);
-    }
-    else {
-      // Tries to do a get using your token. If it didn't work then your token expired.
-      getSelf()
-        .then(res => {
-          console.log(res);
-          history.push('/dashboard');
-        })
-        .catch(err => {
-          console.log(err);
-          history('/');
-        });
-    }
-  }
 
   return (
     <>
-      {isLoading ? 
-        <></>
-        :
-        <LandingPage initialError={error} redirectUser={redirectUser}
-      />}
+      {!currentUser && <LandingPage />}
     </>
-  );
+  )
 }
+
+const StyledDiv = styled.div`
+    display:flex;
+    justify-content: center;
+`
 
 export default Home;

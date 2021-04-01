@@ -1,46 +1,32 @@
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { getSelf } from 'functions/api';
+import UserContext from 'contexts/UserContext';
 
 
 
-// Automatically routes user to the correct dashboard based on the account type of their token.
+// Dashboard automatically routes user to the correct dashboard based on the account type of their token.
 const Dashboard = (props) => {
 
   const history = useHistory();
 
+  const { currentUser } = useContext(UserContext);
+
   useEffect(() => {
-    redirectDashboard();
+    switch(currentUser?.accountype) {
+      case 'student':
+        history.push('/dashboard/client');
+        break;
+
+      case 'instructor':
+        history.push('/dashboard/client');
+        break;
+
+      default:
+        break;
+    }
   });
-
-  const redirectDashboard = async () => {
-
-    try {
-      const res = await getSelf();
-
-      switch(res?.data?.accountype) {
-
-        case 'instructor':
-          history.push('/dashboard/instructor');
-          return;
-
-        case 'client':
-          history.push('/dashboard/client');
-          return;
-
-        default:
-          console.warn('no "accountype" field in user info');
-          history.push('/');
-          return;
-      }
-    }
-    catch (err) {
-      console.error(err);
-      history.push('/');
-    }
-  }
 
   return (
     <></>

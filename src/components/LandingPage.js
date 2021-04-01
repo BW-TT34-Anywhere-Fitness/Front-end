@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logotemp from '../gymlogotemp.jpg';
+import natesgif from '../gifultra.gif';
+import banner1 from '../girltrainersquat.jpg';
 import axios from 'axios';
+import UserContext from 'contexts/UserContext';
 const initialValues = {
     credentials: {
-        username: '',
-        password: '',
+        username: 'testinstructor',
+        password: 'testinstructor',
     }
 
 }
@@ -18,10 +21,10 @@ const errorCodeMessages = {
 
 const LandingPage = (props) => {
 
-    const { initialError, redirectUser } = props;
+    const { updateUser } = useContext(UserContext);
 
     const [creds, setCreds] = useState(initialValues);
-    const [ error, setError ] = useState(initialError || '');
+    const [ error, setError ] = useState('');
 
     const history = useHistory();
 
@@ -38,10 +41,11 @@ const LandingPage = (props) => {
         setError('');
         axios
             .post('http://xnor.space/api/authenticate', creds.credentials)
-            .then(async res => {
+            .then(res => {
                 console.log(res);
                 localStorage.setItem('token', res.data.id_token);
-                redirectUser && redirectUser();
+                updateUser();
+                history.push('/dashboard');
             })
             .catch(err => {
                 console.log(err.response);
@@ -68,62 +72,75 @@ const LandingPage = (props) => {
 
     return (
         <StyledContainer>
-            <StyledBody>
-                <StyledAbout>
-                    <StyledPicBox>
-                        <StyledImg src={logotemp} />
-                    </StyledPicBox>
-                </StyledAbout>
-                <StyledFormBox>
-                    <FormCenterHorz>
-                        <StyledForm onSubmit={handleSubmit}>
-
-                            <StyledFSep>
-                                <StyledInput
-                                    type="text"
-                                    name='username'
-                                    value={creds.credentials.username}
-                                    onChange={handleChange}
-                                />
-                            </StyledFSep>
-                            <StyledFSep>
-                                <StyledInput
-                                    type="password"
-                                    name="password"
-                                    value={creds.credentials.password}
-                                    onChange={handleChange}
-                                />
-                            </StyledFSep>
-                            <StyledButton>
-                                <StyleP>Log In</StyleP>
-                            </StyledButton>
-                            <StyledTextBox>
-                                <StylePDark>Forgot Password? That sucks.</StylePDark>
-                            </StyledTextBox>
+            <StyledBannerOne>
 
 
-                        </StyledForm>
-                    </FormCenterHorz>
-                    <FormCenterHorzB>
-                        <StyledForm onSubmit={goToRegister}>
+                <StyledBody>
+                    <StyledAbout>
+                        <StyledPicBox>
+                            <StyledImg src={natesgif} />
+                        </StyledPicBox>
+                    </StyledAbout>
+                    <StyledFormBox>
+                        <FormCenterHorz>
+                            <StyledForm onSubmit={handleSubmit}>
+
+                                <StyledFSep>
+                                    <StyledInput
+                                        type="text"
+                                        name='username'
+                                        value={creds.credentials.username}
+                                        onChange={handleChange}
+                                    />
+                                </StyledFSep>
+                                <StyledFSep>
+                                    <StyledInput
+                                        type="password"
+                                        name="password"
+                                        value={creds.credentials.password}
+                                        onChange={handleChange}
+                                    />
+                                </StyledFSep>
+                                <StyledButton>
+                                    <StyleP>Log In</StyleP>
+                                </StyledButton>
+                                <StyledTextBox>
+                                    <StylePDark>Forgot Password?</StylePDark>
+                                </StyledTextBox>
+
+
+                            </StyledForm>
+                        </FormCenterHorz>
+                        <FormCenterHorzB>
+                            <StyledForm onSubmit={goToRegister}>
 
 
 
 
-                            <StyledDivider>
+                                <StyledDivider>
 
-                            </StyledDivider>
-                            <StyledButton>
-                                <StyleP>Create New Account</StyleP>
-                            </StyledButton>
+                                </StyledDivider>
+                                <StyledButton>
+                                    <StyleP>Create New Account</StyleP>
+                                </StyledButton>
 
-                            {error && <StyledError>{error}</StyledError>}
+                                {error && <StyledError>{error}</StyledError>}
 
 
-                        </StyledForm>
-                    </FormCenterHorzB>
-                </StyledFormBox>
-            </StyledBody>
+                            </StyledForm>
+                        </FormCenterHorzB>
+                    </StyledFormBox>
+                </StyledBody>
+                <StyledAboutTwo>
+                    <StyledTextBoxTwo>
+                        <Styleh1>WE'RE ON A MISSION TO MAKE YOU HAPPY, HEALTHY, AND STRONG!</Styleh1>
+                        <Styleh2>Join in the movement! Join in with other people who are here already! Checkout: <StyleSpan><a target="_blank" href="https://www.instagram.com/explore/tags/healthyliving/">#HEALTHYLIVING</a></StyleSpan></Styleh2>
+                    </StyledTextBoxTwo>
+
+                </StyledAboutTwo>
+            </StyledBannerOne>
+
+
             <StyledFooter>
 
             </StyledFooter>
@@ -139,9 +156,8 @@ export default LandingPage
 const StyledContainer = styled.div`
 display:flex;
 justify-content:center;
-header{
-    display: none
-}
+
+
 
 `
 const StyledBody = styled.div`
@@ -150,6 +166,7 @@ width:90%;
 justify-content:space-evenly;
 padding-bottom: 132px;
 padding-top: 92px;
+flex-direction:column;
 
 `
 const StyledFooter = styled.div`
@@ -166,6 +183,26 @@ align-items:center;
     cursor:pointer;
 }
 `
+const Styleh1 = styled.h1`
+text-align:center;
+`
+const Styleh2 = styled.h2`
+text-align:center;
+`
+const StyleSpan = styled.span`
+:hover a{
+    color:#3c446c;
+    text-shadow: 1px 1px 1px white;
+}
+`
+/*SCROLL BODY BANNERS */
+const StyledBannerOne = styled.div`
+background-image: url(${banner1});
+width: 1600px;
+height:900px;
+    
+`
+
 
 /*BODY CONTAINER LAYOUT STYLES BELOW*/
 const StyledAbout = styled.div`
@@ -173,6 +210,8 @@ display:flex;
 
 `
 const StyledFormBox = styled.div`
+margin:40px;
+margin-top:0px;
 display:flex;
 background-color:white;
 width:350px;
@@ -253,11 +292,25 @@ const StyledPicBox = styled.div`
 }
 `
 const StyledImg = styled.img`
-width:350px;
-height:350px;
+padding:40px;
+width:667px;
+
 border-radius:4px;
+webkit-filter: drop-shadow(5px 5px 5px #222);
+filter: drop-shadow(5px 5px 5px #222);
 `
 
 const StyledError = styled.p`
     color: red;
 `;
+
+/*BODY2 ABOUT STYLES BELOW */
+
+const StyledTextBoxTwo = styled.div`
+width: 60%;
+`
+
+const StyledAboutTwo = styled.div`
+display:flex;
+justify-content:center;
+`

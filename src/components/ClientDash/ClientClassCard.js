@@ -4,6 +4,8 @@ const background1 = '#282F56'
 const background2 = '#2A2F4A'
 
 export default function ClientClassCard(props){
+  const { Component } = props
+
   const {
     instructor,
     type,
@@ -11,23 +13,26 @@ export default function ClientClassCard(props){
     duration,
     intensity,
     maxsize,
+    id,
   } = props.class
 
   return (
     <DivMain color={props.color}>
-      <div>
+      <DivContent>
         <h3>{type}</h3>
-        <h6>Led by <span>{instructor}</span></h6>
-      </div>
-      <p>Intensity: {intensity}</p>
-      <p>Date: {time}</p>
-      <p>Time: {time}</p>
+        <h6>Led by <span>{instructor.firstName} {instructor.lastName}</span></h6>
+        <p>Intensity: {intensity}</p>
+        <p>Date: {time}</p>
+        <p>Time: {time}</p>
+      </DivContent>
+      <Component id={id}/>
     </DivMain>
   )
 }
 
 const DivMain = styled.div`
   background: ${props => props.color === 0 ? background1 : background2};
+  display: flex;
   padding: 10px;
   width: 80%;
 
@@ -48,5 +53,8 @@ const DivMain = styled.div`
   h6 span:hover {
     cursor: pointer;
   }
+`
 
+const DivContent = styled.div`
+  flex-grow: 1;
 `

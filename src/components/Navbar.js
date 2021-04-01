@@ -1,18 +1,21 @@
 
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import UserContext from 'contexts/UserContext';
+
+
+
 const Navbar = (props) => {
 
-  const logOut = () => {
-    localStorage.removeItem('token');
-  }
+  const { currentUser, logOut } = useContext(UserContext);
 
-  const loggedIn = Boolean(localStorage.getItem('token'));
+  const loggedIn = Boolean(currentUser);
 
   return (
     <StyledNavbar>
-      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
         <Link to={loggedIn ? '/dashboard' : '/'}>
           <div className='navText'><span className='whiteBox'>Anywhere</span> Fitness</div>
@@ -23,14 +26,6 @@ const Navbar = (props) => {
               <>
               <Link to='/dashboard'>
                 <div className='navText'>Dashboard</div>
-              </Link>
-
-              <Link to='/dashboard/client'>
-                <div className='navText'>Client Dash</div>
-              </Link>
-              
-              <Link to='/dashboard/instructor'>
-                <div className='navText'>Instructor Dash</div>
               </Link>
               
               <Link to='/' onClick={logOut}>
