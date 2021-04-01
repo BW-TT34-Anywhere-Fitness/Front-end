@@ -88,8 +88,8 @@ export default function ClientDash(props){
     }}>
       This is ClientDash<br/>
       <div style={{display: 'flex', justifyContent: 'space-around', margin: '5px 0'}}>
-        <LinkStyled to='/dashboard/client/search'>Search</LinkStyled>
-        <LinkStyled to='/dashboard/client'>My Classes</LinkStyled>
+        <LinkStyled to='/dashboard/client/search' pressed={window.location.pathname === '/dashboard/client/search'}>Search</LinkStyled>
+        <LinkStyled to='/dashboard/client' pressed={window.location.pathname === '/dashboard/client'}>My Classes</LinkStyled>
       </div>
       <Switch>
         <Route path='/dashboard/client/search'>
@@ -105,7 +105,7 @@ export default function ClientDash(props){
 }
 
 const LinkStyled = styled(Link)`
-  background: #FFF;
+  background: #${props => props.pressed ? 'A5A8AC' : 'FFF'};
   color: #242943 !important;
   padding: 3px 15px;
 `
