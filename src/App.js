@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import Home from 'components/Home';
 import SignUp from 'components/SIgnUp';
 import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
 import Dashboard from 'components/Dashboard';
 import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
@@ -68,6 +69,7 @@ function App() {
           <PrivateRoute path='/dashboard/client' component={ClientDash} />
           <PrivateRoute path='/dashboard/instructor' component={InstructorDash} />
         </Switch>
+        <Footer />
       </Router>
     </StyledBody>
     </UserContext.Provider>

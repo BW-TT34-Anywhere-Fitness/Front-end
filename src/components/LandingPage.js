@@ -122,7 +122,6 @@ const LandingPage = (props) => {
 
 
 
-
                                 <StyledDivider>
 
                                 </StyledDivider>
@@ -137,14 +136,15 @@ const LandingPage = (props) => {
                         </FormCenterHorzB>
                     </StyledFormBox>
                 </StyledBody>
-                <StyledAboutTwo>
-                    <StyledTextBoxTwo>
-                        <Styleh1>WE'RE ON A MISSION TO MAKE YOU HAPPY, HEALTHY, AND STRONG!</Styleh1>
-                        <Styleh2>Join in the movement! Join in with other people who are here already! Checkout: <StyleSpan><a target="_blank" href="https://www.instagram.com/explore/tags/healthyliving/">#HEALTHYLIVING</a></StyleSpan></Styleh2>
-                    </StyledTextBoxTwo>
-
-                </StyledAboutTwo>
             </StyledBannerOne>
+
+            <StyledAboutTwo>
+                <StyledTextBoxTwo>
+                    <Styleh1>WE'RE ON A MISSION TO MAKE YOU HAPPY, HEALTHY, AND STRONG!</Styleh1>
+                    <Styleh2>Join in the movement! Join in with other people who are here already! Checkout: <StyleSpan><a target="_blank" href="https://www.instagram.com/explore/tags/healthyliving/">#HEALTHYLIVING</a></StyleSpan></Styleh2>
+                </StyledTextBoxTwo>
+
+            </StyledAboutTwo>
 
 
             <StyledFooter>
@@ -162,6 +162,10 @@ export default LandingPage
 const StyledContainer = styled.div`
 display:flex;
 justify-content:center;
+align-items: center;
+flex-direction: column;
+
+
 
 
 
