@@ -20,7 +20,7 @@ const Dashboard = (props) => {
         break;
 
       case 'instructor':
-        history.push('/dashboard/client');
+        history.push('/dashboard/instructor');
         break;
 
       default:
