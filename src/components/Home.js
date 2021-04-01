@@ -13,6 +13,7 @@ import UserContext from 'contexts/UserContext';
  * Home checks for a token in localStorage and redirects them to the right page.
  * If no token, it shows landing page. If yes token, it takes user to Dashboard.
  */
+
 const Home = (props) => {
 
   const { currentUser } = useContext(UserContext);

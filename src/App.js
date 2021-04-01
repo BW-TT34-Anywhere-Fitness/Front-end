@@ -109,6 +109,7 @@ const StyledBody = styled.div`
     text-decoration: none;
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   input, select, option, textArea {
     border: none;
@@ -129,6 +130,8 @@ const StyledBody = styled.div`
     outline: 0
   }
 
+=======
+>>>>>>> b6cf991ff7ac2e800dfa766d46811a25bd406264
 =======
 >>>>>>> b6cf991ff7ac2e800dfa766d46811a25bd406264
 `;
