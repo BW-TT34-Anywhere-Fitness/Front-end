@@ -5,11 +5,11 @@ import styled from 'styled-components'
 const Home = (props) => {
   return (
     <>
-        <div>This is Home</div>
-        <StyledDiv>
-            <LoginForm />
-            <SignUpForm />
-        </StyledDiv>
+      <div></div>
+      <StyledDiv>
+        <LoginForm />
+        <SignUpForm />
+      </StyledDiv>
     </>
   );
 }

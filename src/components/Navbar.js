@@ -5,20 +5,25 @@ import styled from 'styled-components';
 const Navbar = (props) => {
   return (
     <StyledNavbar>
-      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
         <Link to='/'>
           <div className='navText'><span className='whiteBox'>Anywhere</span> Fitness</div>
         </Link>
 
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+
+          <Link to='/home'>
+            <div className='navText'>Login/SignUp</div>
+          </Link>
           <Link to='/dashboard/client'>
             <div className='navText'>Client Dash</div>
           </Link>
-          
+
           <Link to='/dashboard/instructor'>
             <div className='navText'>Instructor Dash</div>
           </Link>
+
         </div>
 
       </div>

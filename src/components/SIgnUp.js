@@ -3,14 +3,14 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 export default function SignUpForm() {
-    const [formValues, setFormValues] = useState({login:"", password:"", accounttype:"student"})
+    const [formValues, setFormValues] = useState({login:"", password:"",email:"", accounttype:"student"})
 
     const handleChange= (e) => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
     }
     const formSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://xnor.space/api/register", formValues)
+        axios.post("https://xnor.space/api/register", formValues)
         .then((res)=>{
             console.log(res)
         })
@@ -28,6 +28,15 @@ export default function SignUpForm() {
                 type = "text"
                 name = "login"
                 value = {formValues.login}
+                onChange = {handleChange}
+            />
+            <br/>
+            <LabelStyled htmlFor ='signup_email'>Email</LabelStyled>
+            <InputStyled
+                id='signup_email'
+                type = "email"
+                name = "email"
+                value = {formValues.email}
                 onChange = {handleChange}
             />
             <br/>

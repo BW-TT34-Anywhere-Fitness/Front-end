@@ -10,8 +10,7 @@ export default function LoginForm() {
     }
     const formSubmit = (e) => {
         e.preventDefault();
-        console.log(formValues)
-        axios.post("http://xnor.space/api/authenticate", formValues)
+        axios.post("https://xnor.space/api/authenticate", formValues)
         .then((res)=>{
             console.log(res)
             localStorage.setItem("token", res.data.id_token)
