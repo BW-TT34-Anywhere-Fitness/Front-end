@@ -31,4 +31,5 @@ Instructors can take attendance, request and process payments, create virtual â€
 - [Stav Corcos](https://github.com/Poonchy)
 - [Jonathan Fox](https://github.com/jfox16)
 - [Matthew Ellis](https://github.com/MatthewEllisTx)
+- [Nate Pace](https://github.com/natepace)
 - [Spencer Patterson](https://github.com/Spencerp34)
