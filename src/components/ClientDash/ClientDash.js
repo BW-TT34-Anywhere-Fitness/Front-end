@@ -1,5 +1,9 @@
-import FilterSearch from './FilterSearch'
-import ClientClassCard from './ClientClassCard'
+import { Route, Link, Switch } from 'react-router-dom'
+import styled from 'styled-components'
+
+import FindClass from './FindClass'
+import ClientClasses from './ClientClasses'
+
 
 const old_example = [
   {
@@ -75,19 +79,33 @@ const example = [
 ]
 
 export default function ClientDash(props){
+
   return (
     <div style={{
       margin: '0 auto',
       maxWidth: '1100px',
       width: '90%',
     }}>
-      This is ClientDash
-      <div style={{display: 'flex'}} >
-        <FilterSearch />
-        <div style={{marginLeft: '40px', flexGrow: 1}}>
-          {example.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2}/>)}
-        </div>
+      This is ClientDash<br/>
+      <div style={{display: 'flex', justifyContent: 'space-around', margin: '5px 0'}}>
+        <LinkStyled to='/dashboard/client/search'>Search</LinkStyled>
+        <LinkStyled to='/dashboard/client'>My Classes</LinkStyled>
       </div>
+      <Switch>
+        <Route path='/dashboard/client/search'>
+          <FindClass />
+        </Route>
+        <Route path='/dashboard/client'>
+          <ClientClasses />
+        </Route>
+
+      </Switch>
     </div>
   )
 }
+
+const LinkStyled = styled(Link)`
+  background: #FFF;
+  color: #242943 !important;
+  padding: 3px 15px;
+`

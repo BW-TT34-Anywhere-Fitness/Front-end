@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 import { StyledTitle } from 'components/StyledComponents';
 import ClassForm from 'components/ClassForm';
+import ClassList from 'components/ClassList';
+
+import { createClass } from 'functions/api';
 
 const initialClassData = {
   name: '',
@@ -18,8 +21,14 @@ const initialClassData = {
 
 const InstructorDash = (props) => {
 
-  const createClass = (classData) => {
-    console.log('createClass:', classData);
+  const handleSubmit = (classData) => {
+    createClass(classData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   return (
@@ -31,7 +40,9 @@ const InstructorDash = (props) => {
 
       <h2>Schedule a Class</h2>
 
-      <ClassForm onSubmit={createClass} initialValue={initialClassData} />
+      <ClassForm onSubmit={handleSubmit} initialValue={initialClassData} />
+
+      <ClassList />
 
     </StyledMain>
   );
@@ -41,6 +52,7 @@ const StyledMain = styled.section`
   max-width: 1400px;
   margin: auto;
   padding-bottom: 10em;
+  padding: 1em;
 
   input, select, option, textArea {
     border: none;
@@ -61,5 +73,7 @@ const StyledMain = styled.section`
     outline: 0
   }
 `;
+
+
 
 export default InstructorDash;
