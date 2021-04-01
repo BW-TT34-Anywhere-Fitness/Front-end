@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import twitterIcon from './img/43-twitter-512.webp';
+
 const Footer = (props) => {
   return (
     <StyledFooter>
@@ -30,7 +32,7 @@ const Footer = (props) => {
             </div>
     </section>
     <div class="social">
-      <img src='https://cdn3.iconfinder.com/data/icons/picons-social/57/43-twitter-512.png'/>
+      <img src={twitterIcon} alt='twitter' />
       <img src='https://cdn4.iconfinder.com/data/icons/icon-flat-icon-set/50/social-facebook-256.png'/>
       <img src='https://cdn4.iconfinder.com/data/icons/icon-flat-icon-set/50/social-instagram-256.png'/>
       <img src='https://cdn4.iconfinder.com/data/icons/social-media-free-13/32/Github_social_media_logo-256.png'/>
