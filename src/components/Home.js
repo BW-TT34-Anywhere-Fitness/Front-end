@@ -1,5 +1,5 @@
 
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const Home = (props) => {
     <>
       {!currentUser && <LandingPage />}
     </>
-  );
+  )
 }
 
 const StyledDiv = styled.div`

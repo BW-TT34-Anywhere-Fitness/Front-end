@@ -14,7 +14,13 @@ import Navbar from 'components/Navbar';
 import Dashboard from 'components/Dashboard';
 import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
-import LandingPage from 'components/LandingPage';
+
+import PrivateRoute from 'components/PrivateRoute';
+
+import UserContext from 'contexts/UserContext';
+import { getSelf } from 'functions/api';
+
+
 
 import PrivateRoute from 'components/PrivateRoute';
 

@@ -24,6 +24,7 @@ const Navbar = (props) => {
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             {loggedIn ? (
               <>
+<<<<<<< HEAD
               <Link to='/dashboard/client'>
                 <div className='navText'>Client Dash</div>
               </Link>
@@ -33,6 +34,11 @@ const Navbar = (props) => {
                   <div className='navText'>Instructor Dash</div>
                 </Link>
               : <></>}
+=======
+              <Link to='/dashboard'>
+                <div className='navText'>Dashboard</div>
+              </Link>
+>>>>>>> 5f0f82eb83a153c34a8ba38f274e0d3151b47142
               
               <Link to='/' onClick={logOut}>
                 <div className='navText'>Log Out</div>
