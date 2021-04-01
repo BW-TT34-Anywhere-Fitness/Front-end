@@ -20,15 +20,9 @@ const Home = (props) => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    if (currentUser) {
-      history.push('/dashboard');
-    }
-  });
-
   return (
     <>
-      {!currentUser && <LandingPage />}
+      <LandingPage />
     </>
   )
 }

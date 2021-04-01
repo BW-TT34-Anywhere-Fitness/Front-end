@@ -17,16 +17,22 @@ const Navbar = (props) => {
     <StyledNavbar>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
-        <Link to={loggedIn ? '/dashboard' : '/'}>
+        <Link to='/'>
           <div className='navText'><span className='whiteBox'>Anywhere</span> Fitness</div>
         </Link>
 
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
             {loggedIn ? (
               <>
-              <Link to='/dashboard'>
-                <div className='navText'>Dashboard</div>
+              <Link to='/dashboard/client'>
+                <div className='navText'>Client Dash</div>
               </Link>
+
+              {currentUser.accountype === 'instructor' ?
+                <Link to='/dashboard/instructor'>
+                  <div className='navText'>Instructor Dash</div>
+                </Link>
+              : <></>}
               
               <Link to='/' onClick={logOut}>
                 <div className='navText'>Log Out</div>
