@@ -11,7 +11,7 @@ import useForm from 'hooks/useForm';
 const InstructorDash = (props) => {
   const { initialValue, onSubmit } = props;
 
-  const [classData, handleChange] = useForm(initialValue);
+  const [ classData, handleChange ] = useForm(initialValue);
 
   const handleSubmit = (e) => {
     e.preventDefault();
