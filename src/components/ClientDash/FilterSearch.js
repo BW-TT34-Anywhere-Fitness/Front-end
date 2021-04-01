@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import { StyledButton } from 'components/StyledComponents'
 import DateTimeInput from 'components/DateTimeInput'
 
+import { searchClasses } from 'functions/api';
+
 const intensities = [ 'Beginner', 'Intermediate', 'Advanced', 'Legendary', 'GODLIKE' ]
 
 const initialFilter = {
@@ -86,7 +88,8 @@ export default function FilterSearch(props){
     // loc = location
     console.log('params:', filter)
 
-    axios.get('http://xnor.space/api/courses/search', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    // axios.get('http://xnor.space/api/courses/search', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    searchClasses()
       .then( res => {
         console.log(res)
         setResults(res.data)

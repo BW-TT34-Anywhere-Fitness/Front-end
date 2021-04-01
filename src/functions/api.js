@@ -28,3 +28,11 @@ export const createClass = (classData) => {
 export const getClasses = () => {
   return axiosWithAuth().get(BASE_URL + '/api/courses');
 }
+
+export const getMyClasses = () => {
+  return axiosWithAuth().get(BASE_URL + '/api/account/courses');
+}
+
+export const searchClasses = ( queryData ) => {
+  return axiosWithAuth().get(BASE_URL + '/api/courses/search', queryData);
+}
