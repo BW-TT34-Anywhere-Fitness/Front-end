@@ -26,7 +26,6 @@ Instructors can take attendance, request and process payments, create virtual â€
 - [Pat Jean](https://github.com/PhatherJean)
 - [Anthony Catanzariti](https://github.com/apcatanzariti)
 - [Jiawei Wu](https://github.com/abc1929)
-- [Chase Snider](https://github.com/jcsnider431)
 
 **Front End**
 - [Stav Corcos](https://github.com/Poonchy)
