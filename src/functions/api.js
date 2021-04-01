@@ -2,37 +2,37 @@
 import axios from 'axios';
 import axiosWithAuth from 'functions/axiosWithAuth';
 
-const BASE_URL = 'https://xnor.space';
+export const BASE_URL = 'https://xnor.space/api';
 
 
 
 // Logs in with loginData. props: username, password
 export const login = ( loginData ) => {
-  return axios.post(BASE_URL + '/api/authenticate', loginData);
+  return axios.post(`${BASE_URL}/authenticate`, loginData);
 }
 
 // Takes userData and creates a new user. props: login, password, accounttype (student/instructor)
 export const signUp = ( userData ) => {
-  return axios.post(BASE_URL + '/api/register', userData);
+  return axios.post('/register', userData);
 }
 
 // Returns info of the currently logged in user.
 export const getSelf = () => {
-  return axiosWithAuth().get(BASE_URL + '/api/account');
+  return axiosWithAuth().get('/account');
 }
 
 export const createClass = (classData) => {
-  return axiosWithAuth().post(BASE_URL + '/api/courses', classData);
+  return axiosWithAuth().post('/courses', classData);
 }
 
 export const getClasses = () => {
-  return axiosWithAuth().get(BASE_URL + '/api/courses');
+  return axiosWithAuth().get('/courses');
 }
 
 export const getMyClasses = () => {
-  return axiosWithAuth().get(BASE_URL + '/api/account/courses');
+  return axiosWithAuth().get('/account/courses');
 }
 
 export const searchClasses = ( queryData ) => {
-  return axiosWithAuth().get(BASE_URL + '/api/courses/search', queryData);
+  return axiosWithAuth().get('/courses/search', queryData);
 }
