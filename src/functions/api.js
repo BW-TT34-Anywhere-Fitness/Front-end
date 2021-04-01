@@ -13,26 +13,26 @@ export const login = ( loginData ) => {
 
 // Takes userData and creates a new user. props: login, password, accounttype (student/instructor)
 export const signUp = ( userData ) => {
-  return axios.post('/api/register', userData);
+  return axios.post('/register', userData);
 }
 
 // Returns info of the currently logged in user.
 export const getSelf = () => {
-  return axiosWithAuth().get('/api/account');
+  return axiosWithAuth().get('/account');
 }
 
 export const createClass = (classData) => {
-  return axiosWithAuth().post('/api/courses', classData);
+  return axiosWithAuth().post('/courses', classData);
 }
 
 export const getClasses = () => {
-  return axiosWithAuth().get('/api/courses');
+  return axiosWithAuth().get('/courses');
 }
 
 export const getMyClasses = () => {
-  return axiosWithAuth().get('/api/account/courses');
+  return axiosWithAuth().get('/account/courses');
 }
 
 export const searchClasses = ( queryData ) => {
-  return axiosWithAuth().get('/api/courses/search', queryData);
+  return axiosWithAuth().get('/courses/search', queryData);
 }
