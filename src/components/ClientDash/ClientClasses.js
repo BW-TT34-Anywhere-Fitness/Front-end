@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import ClientClassCard from './ClientClassCard'
 import Withdraw from './Withdraw'
 
-import { getMyClasses, } from 'functions/api';
+import { getMyClasses } from 'functions/api';
 
 const example = [
   {
