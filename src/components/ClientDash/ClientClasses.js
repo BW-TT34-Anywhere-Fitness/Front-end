@@ -67,7 +67,8 @@ export default function FindClass(props){
   return (
     <div style={{display: 'flex'}} >
       <div style={{marginLeft: '40px', flexGrow: 1}}>
-        {results.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2} Component={Withdraw}/>)}
+        {results && results.length > 0 ? results.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2} Component={Withdraw}/>)
+        : <p>You don't have any classes yet.</p>}
       </div>
     </div>
   )
