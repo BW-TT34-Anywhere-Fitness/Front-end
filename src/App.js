@@ -1,6 +1,4 @@
 
-import { useEffect } from 'react';
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,28 +7,17 @@ import {
 import styled from 'styled-components';
 
 import Home from 'components/Home';
+import SignUp from 'components/SIgnUp';
 import Navbar from 'components/Navbar';
+import Dashboard from 'components/Dashboard';
 import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
-import LandingPage from 'components/LandingPage';
 
-import { login } from 'functions/api';
+import PrivateRoute from 'components/PrivateRoute';
 
 
 
 function App() {
-
-  useEffect(() => {
-    login({ username: 'user', password: 'user' })
-    .then(res => {
-      if (res?.data?.id_token) {
-        localStorage.setItem('token', res.data.id_token);
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }, []);
 
   return (
     <StyledBody>
@@ -38,9 +25,10 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/dashboard/client' component={ClientDash} />
-          <Route path='/dashboard/instructor' component={InstructorDash} />
-          <Route path='/landing' component={LandingPage} />
+          <Route path='/signup' component={SignUp} />
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute path='/dashboard/client' component={ClientDash} />
+          <PrivateRoute path='/dashboard/instructor' component={InstructorDash} />
         </Switch>
       </Router>
     </StyledBody>
@@ -50,7 +38,7 @@ function App() {
 const StyledBody = styled.div`
   box-sizing: border-box;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
-  color: ${props => props.theme.main};
+  color: white;
   font-size: 17pt;
   font-weight: 300;
   letter-spacing: 0.025em;

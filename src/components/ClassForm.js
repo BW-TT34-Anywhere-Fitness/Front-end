@@ -4,15 +4,7 @@ import styled from 'styled-components';
 import { StyledButton } from 'components/StyledComponents';
 import DateTimeInput from 'components/DateTimeInput';
 
-//@ts-ignore
 import useForm from 'hooks/useForm';
-
-const intensities = [ 
-  { id: 0, name: 'Beginner' },
-  { id: 1, name: 'Intermediate' },
-  { id: 2, name: 'Advanced' },
-  { id: 3, name: 'Expert' }
-];
 
 
 
@@ -54,8 +46,8 @@ const InstructorDash = (props) => {
           <label htmlFor='intensity'>Intensity</label>
           <select name='intensity' id='intensity' value={classData.intensity} onChange={handleChange}>
             <option disabled value=''> - Select a level - </option>
-            {intensities.map(intensity => (
-              <option value={intensity.id} key={intensity.id}>{intensity.name}</option>
+            {[ ...Array(10).keys() ].map(intensity => (
+              <option value={intensity} key={intensity}>{intensity}</option>
             ))}
           </select>
         </div>

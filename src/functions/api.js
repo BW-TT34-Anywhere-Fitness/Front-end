@@ -6,8 +6,19 @@ const BASE_URL = 'http://xnor.space';
 
 
 
-export const login = ({ username, password }) => {
-  return axios.post(BASE_URL + '/api/authenticate', { username, password });
+// Logs in with loginData. props: username, password
+export const login = ( loginData ) => {
+  return axios.post(BASE_URL + '/api/authenticate', loginData);
+}
+
+// Takes userData and creates a new user. props: login, password, accounttype (student/instructor)
+export const signUp = ( userData ) => {
+  return axios.post(BASE_URL + '/api/register', userData);
+}
+
+// Returns info of the currently logged in user.
+export const getSelf = () => {
+  return axiosWithAuth().get(BASE_URL + '/api/account');
 }
 
 export const createClass = (classData) => {

@@ -1,15 +1,29 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 
+import { StyledButton } from 'components/StyledComponents';
+
+import { signUp } from 'functions/api';
+
 export default function SignUpForm() {
-    const [formValues, setFormValues] = useState({username:"", password:""})
-    const [ focus, setFocus ] = useState({username:false, password:false})
+    const [formValues, setFormValues] = useState({login:"", password:"", accounttype: 'student'})
+    const [ focus, setFocus ] = useState({login:false, password:false})
+    const [ success, setSuccess ] = useState(false);
 
     const handleChange= (e) => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
     }
     const formSubmit = (e) => {
         e.preventDefault();
+        console.log(formValues);
+        signUp(formValues)
+            .then(res => {
+                console.log(res);
+                setSuccess(true);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     function onFocus(evt) {
@@ -27,12 +41,12 @@ export default function SignUpForm() {
     return (
         <FormFieldsetStyled onSubmit = {formSubmit}>
             <h1>Sign Up</h1>
-            <LabelStyled focus={focus.username} htmlFor ='username'>Username</LabelStyled>
+            <LabelStyled focus={focus.login} htmlFor ='login'>login</LabelStyled>
             <InputStyled
-                id='username'
+                id='login'
                 type = "text"
-                name = "username"
-                value = {formValues.username}
+                name = "login"
+                value = {formValues.login}
                 onChange = {handleChange}
                 onFocus={onFocus}
                 onBlur={onBlur}
@@ -47,6 +61,13 @@ export default function SignUpForm() {
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
+            <LabelStyled htmlFor ='accounttype'>Account Type</LabelStyled>
+            <select value={formValues.accounttype} name='accounttype' onChange={handleChange}>
+                <option value='student'>Student</option>
+                <option value='instructor'>Instructor</option>
+            </select>
+            <StyledButton>Sign Up</StyledButton>
+            {success && <h4>Sign up successful!</h4>}
         </FormFieldsetStyled>
     )
 }

@@ -21,6 +21,8 @@ const initialClassData = {
 
 const InstructorDash = (props) => {
 
+  console.log('rendering instructor dash');
+
   const handleSubmit = (classData) => {
     createClass(classData)
       .then(res => {

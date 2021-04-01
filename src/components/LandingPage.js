@@ -1,10 +1,69 @@
-import React from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logotemp from '../gymlogotemp.jpg';
+import axios from 'axios';
+const initialValues = {
+    credentials: {
+        username: '',
+        password: '',
+    }
 
+}
 
-const LandingPage = () => {
+const errorCodeMessages = {
+    default: 'Error logging in.',
+    401: "Login info not found. You may need to create an account.",
+}
+
+const LandingPage = (props) => {
+
+    const { initialError, redirectUser } = props;
+
+    const [creds, setCreds] = useState(initialValues);
+    const [ error, setError ] = useState(initialError || '');
+
+    const history = useHistory();
+
+    const handleChange = e => {
+        setCreds({
+            credentials: {
+                ...creds.credentials,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    const handleSubmit = e => {
+        e.preventDefault();
+        setError('');
+        axios
+            .post('http://xnor.space/api/authenticate', creds.credentials)
+            .then(async res => {
+                console.log(res);
+                localStorage.setItem('token', res.data.id_token);
+                redirectUser && redirectUser();
+            })
+            .catch(err => {
+                console.log(err.response);
+
+                let errorMessage = errorCodeMessages.default;
+                if (err.response) {
+                    if (errorCodeMessages[err.response?.status]) {
+                        errorMessage = errorCodeMessages[err.response.status];
+                    }
+                }
+                else {
+                    errorMessage = 'Error connecting to the server.';
+                }
+                setError(errorMessage);
+            })
+
+    }
+
+    const goToRegister = e => {
+        e.preventDefault()
+        history.push('/signup');
+    }
 
 
     return (
@@ -17,17 +76,22 @@ const LandingPage = () => {
                 </StyledAbout>
                 <StyledFormBox>
                     <FormCenterHorz>
-                        <StyledForm>
+                        <StyledForm onSubmit={handleSubmit}>
 
                             <StyledFSep>
                                 <StyledInput
                                     type="text"
-
+                                    name='username'
+                                    value={creds.credentials.username}
+                                    onChange={handleChange}
                                 />
                             </StyledFSep>
                             <StyledFSep>
                                 <StyledInput
                                     type="password"
+                                    name="password"
+                                    value={creds.credentials.password}
+                                    onChange={handleChange}
                                 />
                             </StyledFSep>
                             <StyledButton>
@@ -41,7 +105,7 @@ const LandingPage = () => {
                         </StyledForm>
                     </FormCenterHorz>
                     <FormCenterHorzB>
-                        <StyledForm>
+                        <StyledForm onSubmit={goToRegister}>
 
 
 
@@ -52,6 +116,8 @@ const LandingPage = () => {
                             <StyledButton>
                                 <StyleP>Create New Account</StyleP>
                             </StyledButton>
+
+                            {error && <StyledError>{error}</StyledError>}
 
 
                         </StyledForm>
@@ -73,6 +139,9 @@ export default LandingPage
 const StyledContainer = styled.div`
 display:flex;
 justify-content:center;
+header{
+    display: none
+}
 
 `
 const StyledBody = styled.div`
@@ -141,10 +210,12 @@ border-top:none;
 border-bottom:1px solid #DDD;
 box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
 text-indent:14px;
+background-color:white;
 :focus { 
     outline:none;
     border-color:#9ecaed;
     box-shadow:0 0 8px #9ecaed;
+    
 }
 `
 const StyledFSep = styled.div`
@@ -153,7 +224,7 @@ flex-direction:column;
 `
 const StyledButton = styled.button`
 display:flex;
-height 40px;
+height: 40px;
 width:100%;
 align-items:center;
 justify-content:center;
@@ -177,10 +248,16 @@ border-bottom: 1px solid #dadde1;
 `
 /*ABOUT LAYOUT STYLES BELOW*/
 const StyledPicBox = styled.div`
-
+@media(max-width:796px) {
+    display: none;
+}
 `
 const StyledImg = styled.img`
 width:350px;
 height:350px;
 border-radius:4px;
 `
+
+const StyledError = styled.p`
+    color: red;
+`;

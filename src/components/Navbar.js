@@ -3,23 +3,52 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Navbar = (props) => {
+
+  const logOut = () => {
+    localStorage.removeItem('token');
+  }
+
+  const loggedIn = Boolean(localStorage.getItem('token'));
+
   return (
     <StyledNavbar>
       <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
 
-        <Link to='/'>
+        <Link to={loggedIn ? '/dashboard' : '/'}>
           <div className='navText'><span className='whiteBox'>Anywhere</span> Fitness</div>
         </Link>
 
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <Link to='/dashboard/client'>
-            <div className='navText'>Client Dash</div>
-          </Link>
-          
-          <Link to='/dashboard/instructor'>
-            <div className='navText'>Instructor Dash</div>
-          </Link>
-        </div>
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            {loggedIn ? (
+              <>
+              <Link to='/dashboard'>
+                <div className='navText'>Dashboard</div>
+              </Link>
+
+              <Link to='/dashboard/client'>
+                <div className='navText'>Client Dash</div>
+              </Link>
+              
+              <Link to='/dashboard/instructor'>
+                <div className='navText'>Instructor Dash</div>
+              </Link>
+              
+              <Link to='/' onClick={logOut}>
+                <div className='navText'>Log Out</div>
+              </Link>
+              </>
+            ) : (
+              <>
+              <Link to='/'>
+                <div className='navText'>Log In</div>
+              </Link>
+
+              <Link to='/signup'>
+                <div className='navText'>Sign Up</div>
+              </Link>
+              </>
+            )}
+          </div>
 
       </div>
     </StyledNavbar>
