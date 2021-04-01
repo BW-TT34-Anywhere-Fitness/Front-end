@@ -81,7 +81,7 @@ const LandingPage = () => {
                                     <StyleP>Log In</StyleP>
                                 </StyledButton>
                                 <StyledTextBox>
-                                    <StylePDark>Forgot Password? That sucks.</StylePDark>
+                                    <StylePDark>Forgot Password?</StylePDark>
                                 </StyledTextBox>
 
 
@@ -108,6 +108,7 @@ const LandingPage = () => {
                 <StyledAboutTwo>
                     <StyledTextBoxTwo>
                         <Styleh1>WE'RE ON A MISSION TO MAKE YOU HAPPY, HEALTHY, AND STRONG!</Styleh1>
+                        <Styleh2>Join in the movement! Join in with other people who are here already! Checkout: <StyleSpan><a target="_blank" href="https://www.instagram.com/explore/tags/healthyliving/">#HEALTHYLIVING</a></StyleSpan></Styleh2>
                     </StyledTextBoxTwo>
 
                 </StyledAboutTwo>
@@ -159,6 +160,15 @@ align-items:center;
 `
 const Styleh1 = styled.h1`
 text-align:center;
+`
+const Styleh2 = styled.h2`
+text-align:center;
+`
+const StyleSpan = styled.span`
+:hover a{
+    color:#3c446c;
+    text-shadow: 1px 1px 1px white;
+}
 `
 /*SCROLL BODY BANNERS */
 const StyledBannerOne = styled.div`
