@@ -34,6 +34,10 @@ const Navbar = (props) => {
                 </Link>
               : <></>}
               
+              <Link to='/profile'>
+                <div className='navText'>Profile</div>
+              </Link>
+              
               <Link to='/' onClick={logOut}>
                 <div className='navText'>Log Out</div>
               </Link>

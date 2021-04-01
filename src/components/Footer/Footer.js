@@ -14,32 +14,32 @@ import addressIcon from './img/address-icon.jpg';
 const Footer = (props) => {
   return (
     <StyledFooter>
-        <section class='Contact'>
-            <div class="Email">
+        <section className='Contact'>
+            <div className="Email">
 
-            <div class='method'>
+            <div className='method'>
                 <img src={emailIcon} alt='email' />
                 <h3> Email </h3>
             </div>
             <h4> information@untitled.tld </h4>
 
             </div>
-            <div class="Phone">
-                <div class='method'>
+            <div className="Phone">
+                <div className='method'>
                     <img src={phoneIcon} alt='phone' />
                     <h3> Phone </h3>
                 </div>
                 <h4> (000) 000-0000 </h4>
             </div>
-            <div class="Address">
-            <div class='method'>
+            <div className="Address">
+            <div className='method'>
                 <img src={addressIcon} alt='address' />
                 <h3> Address </h3>
             </div>
             <h4> 1234 Somewhere Road #5432 <br /> Nashville, TN 00000 <br/> United States of America </h4>
             </div>
     </section>
-    <div class="social">
+    <div className="social">
       <img src={twitterIcon} alt='twitter' />
       <img src={facebookIcon} alt='facebook' />
       <img src={instagramIcon} alt='instagram' />

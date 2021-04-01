@@ -16,6 +16,7 @@ import Dashboard from 'components/Dashboard';
 import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
 import PrivateRoute from 'components/PrivateRoute';
+import Profile from 'components/Profile';
 
 import UserContext from 'contexts/UserContext';
 import { getSelf } from 'functions/api';
@@ -68,6 +69,7 @@ function App() {
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <PrivateRoute path='/dashboard/client' component={ClientDash} />
           <PrivateRoute path='/dashboard/instructor' component={InstructorDash} />
+          <PrivateRoute path='/profile' component={Profile} />
         </Switch>
         <Footer />
       </Router>
