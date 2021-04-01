@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
 import ClientClassCard from './ClientClassCard'
 import Withdraw from './Withdraw'
+
+import { getMyClasses } from 'functions/api';
 
 const example = [
   {
@@ -52,7 +53,8 @@ export default function FindClass(props){
   const [errors, setErrors] = useState()
 
   useEffect(() => {
-    axios.get('http://xnor.space/api/account/courses', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    // axios.get('http://xnor.space/api/account/courses', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    getMyClasses()
       .then( res => {
         console.log(res)
         setResults(res.data)
@@ -65,7 +67,8 @@ export default function FindClass(props){
   return (
     <div style={{display: 'flex'}} >
       <div style={{marginLeft: '40px', flexGrow: 1}}>
-        {results.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2} Component={Withdraw}/>)}
+        {results && results.length > 0 ? results.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2} Component={Withdraw}/>)
+        : <p>You don't have any classes yet.</p>}
       </div>
     </div>
   )
