@@ -95,7 +95,7 @@ export default function FilterSearch(props){
         setResults(res.data)
       })
       .catch( err => {
-        console.log(err.response)
+        console.log(err, err.response)
       })
   }
 

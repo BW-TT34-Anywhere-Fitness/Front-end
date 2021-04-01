@@ -2,15 +2,16 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 export default function Register(props){
-  const { id } = props
+  const { id, update } = props
 
   function onClick(){
     axios.delete(`https://xnor.space/api/account/courses/${id}`, {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
       .then( res => {
-        console.log(res)
+        // console.log(res)
+        update(id)
       })
       .catch( err => {
-        console.log(err)
+        // console.log(err)
       })
   }
 

@@ -26,7 +26,7 @@ function App() {
   const [ currentUser, setCurrentUser ] = useState(null);
 
   useEffect(() => {
-    console.log('UserContext.currentUser:', currentUser);
+    // console.log('UserContext.currentUser:', currentUser);
   }, [ currentUser ]);
 
   useEffect(() => {
@@ -48,11 +48,11 @@ function App() {
           setCurrentUser(res.data);
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
     }
     else {
-      console.log('no token');
+      // console.log('no token');
     }
   }
 

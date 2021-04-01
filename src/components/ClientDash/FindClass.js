@@ -1,8 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { getMyClasses } from 'functions/api';
 
 import FilterSearch from './FilterSearch'
 import ClientClassCard from './ClientClassCard'
 import Register from './Register'
+import axios from 'axios';
+
+
 
 const example = [
   {
@@ -49,11 +54,44 @@ const example = [
 
 export default function FindClass(props){
   const [results, setResults] = useState(example)
+  const [myClassIDS, setMyClassIDS] = useState([])
   const [errors, setErrors] = useState()
+
+  useEffect(() => {
+    // axios.delete('https://xnor.space/api/courses/1401', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    //   .then( res => {
+    //     console.log(res)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+
+    getMyClasses()
+      .then( res => {
+        // console.log(res)
+        setMyClassIDS(res.data.map( obj => obj.id))
+      })
+      .catch( err => {
+        // console.log(err)
+      })
+  },[])
+
+  function setNewClasses(results){
+    const today = new Date().toISOString().split('T')[0].split('-').join('');
+    console.log(results[0].starttime.split('T')[0].split('-').join('') < today)
+    setResults(results.filter( obj => !myClassIDS.includes(obj.id) && obj.starttime.split('T')[0].split('-').join('') > today))
+    // setResults(results.filter( obj => {
+    //   // console.log(obj.starttime.split('T')[0].split('-').join(''))
+    //   console.log(obj)
+    //   return true
+    // }))
+
+    
+  }
 
   return (
     <div style={{display: 'flex'}} >
-      <FilterSearch setResults={setResults} setErrors={setErrors}/>
+      <FilterSearch setResults={setNewClasses} setErrors={setErrors}/>
       <div style={{marginLeft: '40px', flexGrow: 1}}>
         {results.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2} Component={Register}/>)}
       </div>
