@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logotemp from '../gymlogotemp.jpg';
+import natesgif from '../gifultra.gif';
+import banner1 from '../girltrainersquat.jpg';
 import axios from 'axios';
 const initialValues = {
     credentials: {
@@ -40,66 +42,79 @@ const LandingPage = () => {
     const goToRegister = e => {
         e.preventDefault()
         console.log('no register yet, better make one!!')
-
+        window.location.href = '/home'
     }
 
 
     return (
         <StyledContainer>
-            <StyledBody>
-                <StyledAbout>
-                    <StyledPicBox>
-                        <StyledImg src={logotemp} />
-                    </StyledPicBox>
-                </StyledAbout>
-                <StyledFormBox>
-                    <FormCenterHorz>
-                        <StyledForm onSubmit={handleSubmit}>
-
-                            <StyledFSep>
-                                <StyledInput
-                                    type="text"
-                                    name='username'
-                                    value={creds.credentials.username}
-                                    onChange={handleChange}
-                                />
-                            </StyledFSep>
-                            <StyledFSep>
-                                <StyledInput
-                                    type="password"
-                                    name="password"
-                                    value={creds.credentials.password}
-                                    onChange={handleChange}
-                                />
-                            </StyledFSep>
-                            <StyledButton>
-                                <StyleP>Log In</StyleP>
-                            </StyledButton>
-                            <StyledTextBox>
-                                <StylePDark>Forgot Password? That sucks.</StylePDark>
-                            </StyledTextBox>
+            <StyledBannerOne>
 
 
-                        </StyledForm>
-                    </FormCenterHorz>
-                    <FormCenterHorzB>
-                        <StyledForm onSubmit={goToRegister}>
+                <StyledBody>
+                    <StyledAbout>
+                        <StyledPicBox>
+                            <StyledImg src={natesgif} />
+                        </StyledPicBox>
+                    </StyledAbout>
+                    <StyledFormBox>
+                        <FormCenterHorz>
+                            <StyledForm onSubmit={handleSubmit}>
+
+                                <StyledFSep>
+                                    <StyledInput
+                                        type="text"
+                                        name='username'
+                                        value={creds.credentials.username}
+                                        onChange={handleChange}
+                                    />
+                                </StyledFSep>
+                                <StyledFSep>
+                                    <StyledInput
+                                        type="password"
+                                        name="password"
+                                        value={creds.credentials.password}
+                                        onChange={handleChange}
+                                    />
+                                </StyledFSep>
+                                <StyledButton>
+                                    <StyleP>Log In</StyleP>
+                                </StyledButton>
+                                <StyledTextBox>
+                                    <StylePDark>Forgot Password? That sucks.</StylePDark>
+                                </StyledTextBox>
+
+
+                            </StyledForm>
+                        </FormCenterHorz>
+                        <FormCenterHorzB>
+                            <StyledForm onSubmit={goToRegister}>
 
 
 
 
-                            <StyledDivider>
+                                <StyledDivider>
 
-                            </StyledDivider>
-                            <StyledButton>
-                                <StyleP>Create New Account</StyleP>
-                            </StyledButton>
+                                </StyledDivider>
+                                <StyledButton>
+                                    <StyleP>Create New Account</StyleP>
+                                </StyledButton>
 
 
-                        </StyledForm>
-                    </FormCenterHorzB>
-                </StyledFormBox>
-            </StyledBody>
+                            </StyledForm>
+                        </FormCenterHorzB>
+                    </StyledFormBox>
+                </StyledBody>
+                <StyledAboutTwo>
+                    <StyledTextBoxTwo>
+                        <Styleh1>WE'RE ON A MISSION TO MAKE YOU HAPPY, HEALTHY, AND STRONG!</Styleh1>
+                    </StyledTextBoxTwo>
+
+                </StyledAboutTwo>
+            </StyledBannerOne>
+
+
+
             <StyledFooter>
 
             </StyledFooter>
@@ -115,9 +130,8 @@ export default LandingPage
 const StyledContainer = styled.div`
 display:flex;
 justify-content:center;
-header{
-    display: none
-}
+
+
 
 `
 const StyledBody = styled.div`
@@ -126,6 +140,7 @@ width:90%;
 justify-content:space-evenly;
 padding-bottom: 132px;
 padding-top: 92px;
+flex-direction:column;
 
 `
 const StyledFooter = styled.div`
@@ -142,6 +157,17 @@ align-items:center;
     cursor:pointer;
 }
 `
+const Styleh1 = styled.h1`
+text-align:center;
+`
+/*SCROLL BODY BANNERS */
+const StyledBannerOne = styled.div`
+background-image: url(${banner1});
+width: 1600px;
+height:900px;
+    
+`
+
 
 /*BODY CONTAINER LAYOUT STYLES BELOW*/
 const StyledAbout = styled.div`
@@ -149,6 +175,8 @@ display:flex;
 
 `
 const StyledFormBox = styled.div`
+margin:40px;
+margin-top:0px;
 display:flex;
 background-color:white;
 width:350px;
@@ -229,7 +257,21 @@ const StyledPicBox = styled.div`
 }
 `
 const StyledImg = styled.img`
-width:350px;
-height:350px;
+padding:40px;
+width:667px;
+
 border-radius:4px;
+webkit-filter: drop-shadow(5px 5px 5px #222);
+filter: drop-shadow(5px 5px 5px #222);
+`
+
+/*BODY2 ABOUT STYLES BELOW */
+
+const StyledTextBoxTwo = styled.div`
+width: 60%;
+`
+
+const StyledAboutTwo = styled.div`
+display:flex;
+justify-content:center;
 `

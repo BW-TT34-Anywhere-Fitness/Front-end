@@ -17,10 +17,10 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/home' component={Home} />
           <Route path='/dashboard/client' component={ClientDash} />
           <Route path='/dashboard/instructor' component={InstructorDash} />
-          <Route path='/landing' component={LandingPage} />
+          <Route path='/' component={LandingPage} />
         </Switch>
       </Router>
     </StyledBody>

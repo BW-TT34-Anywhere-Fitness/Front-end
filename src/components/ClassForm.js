@@ -13,14 +13,14 @@ const types = [
   { value: 'pilates', name: "Pilates" },
   { value: 'underbox', name: "Underwater Boxing" },
 ];
-const intensities = [ 'Beginner', 'Intermediate', 'Advanced', 'Legendary', 'GODLIKE' ];
+const intensities = ['Beginner', 'Intermediate', 'Advanced', 'Legendary', 'GODLIKE'];
 
 
 
 const InstructorDash = (props) => {
   const { initialValue, onSubmit } = props;
 
-  const [ classData, handleChange ] = useForm(initialValue);
+  const [classData, handleChange] = useForm(initialValue);
 
   const handleSubmit = (e) => {
     e.preventDefault();
