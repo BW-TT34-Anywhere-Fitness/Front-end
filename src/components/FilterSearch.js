@@ -14,7 +14,7 @@ const initialFilter = {
   intensity: '',
   dateFrom: '',
   dateTo: '',
-  time: {},
+  time: '',
 }
 
 export default function FilterSearch(props){
@@ -159,7 +159,7 @@ export default function FilterSearch(props){
           </select>
         </div>
 
-        <label htmlFor='showDate'>Date <span onClick={() => {console.log('hi');setHidden(!hidden)}} id='V'>V</span></label>
+        <label htmlFor='showDate'>Date <span onClick={() => setHidden(!hidden)} id='V'>V</span></label>
         <DivDate expanded={!hidden}>
           <p style={{margin: '0.5em'}}>From<span>*</span></p>
           <div>
