@@ -18,8 +18,8 @@ const initialFilter = {
 }
 
 export default function FilterSearch(props){
-  const [results, setResults] = useState([])
-  const [error, setError] = useState('')
+  const {setResults, setErrors} = props
+
   const [filter, setFilter] = useState(initialFilter)
   const [hidden, setHidden] = useState(true)
   const [scrollbar, setScrollbar] =useState(true) // set to true because the use effect flips it on load
@@ -57,7 +57,7 @@ export default function FilterSearch(props){
 
     function fail(){
       console.log('blocked or failed')
-      setError('Please enter a zip code')
+      setErrors('Please enter a zip code')
     }
   }, [])
 
@@ -86,9 +86,10 @@ export default function FilterSearch(props){
     // loc = location
     console.log('params:', filter)
 
-    axios.get('http://xnor.space/api/courses/search', {headers: {Authorization: 'Bearer'}})
+    axios.get('http://xnor.space/api/courses/search', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
       .then( res => {
         console.log(res)
+        setResults(res.data)
       })
       .catch( err => {
         console.log(err.response)

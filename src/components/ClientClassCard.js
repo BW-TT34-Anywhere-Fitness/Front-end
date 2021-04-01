@@ -17,7 +17,7 @@ export default function ClientClassCard(props){
     <DivMain color={props.color}>
       <div>
         <h3>{type}</h3>
-        <h6>Led by <span>{instructor}</span></h6>
+        <h6>Led by <span>{instructor.firstName} {instructor.lastName}</span></h6>
       </div>
       <p>Intensity: {intensity}</p>
       <p>Date: {time}</p>

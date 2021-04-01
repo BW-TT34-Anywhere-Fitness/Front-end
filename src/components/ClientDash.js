@@ -1,5 +1,6 @@
 import FilterSearch from './FilterSearch'
 import ClientClassCard from './ClientClassCard'
+import { useState } from 'react'
 
 const old_example = [
   {
@@ -75,6 +76,10 @@ const example = [
 ]
 
 export default function ClientDash(props){
+  const [results, setResults] = useState(example)
+  const [errors, setErrors] = useState()
+
+  
   return (
     <div style={{
       margin: '0 auto',
@@ -83,9 +88,9 @@ export default function ClientDash(props){
     }}>
       This is ClientDash
       <div style={{display: 'flex'}} >
-        <FilterSearch />
+        <FilterSearch setResults={setResults} setErrors={setErrors}/>
         <div style={{marginLeft: '40px', flexGrow: 1}}>
-          {example.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2}/>)}
+          {results.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2}/>)}
         </div>
       </div>
     </div>

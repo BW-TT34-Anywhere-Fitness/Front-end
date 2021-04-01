@@ -1,5 +1,5 @@
 import LoginForm from './Login.js'
-import SignUpForm from './SignUp.js'
+import SignUpForm from './SIgnUp.js'
 import styled from 'styled-components'
 
 const Home = (props) => {
