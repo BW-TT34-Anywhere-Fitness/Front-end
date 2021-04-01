@@ -7,6 +7,7 @@ import {
 import styled from 'styled-components';
 
 import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
 import Home from 'components/Home';
 import ClientDash from 'components/ClientDash';
 import InstructorDash from 'components/InstructorDash';
@@ -25,6 +26,7 @@ function App() {
           <Route path='/dashboard/instructor' component={InstructorDash} />
           <Route path='/landing' component={LandingPage} />
         </Switch>
+        <Footer />
       </Router>
     </StyledBody>
   );
@@ -81,6 +83,7 @@ const StyledBody = styled.div`
   *:focus {
     outline: 0
   }
+
 `;
 
 export default App;
