@@ -15,6 +15,7 @@ const InstructorDash = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('Scheduling class:', classData);
     onSubmit(classData);
   }
 
@@ -34,7 +35,7 @@ const InstructorDash = (props) => {
 
         <div className='field'>
           <label htmlFor='time'>Start Time</label>
-          <DateTimeInput value={classData.dateTime} onChange={handleChange} />
+          <DateTimeInput value={classData.starttime} onChange={handleChange} />
         </div>
 
         <div className='field'>
@@ -58,8 +59,8 @@ const InstructorDash = (props) => {
         </div>
 
         <div className='field'>
-          <label htmlFor='maxSize'>Maximum Class Size</label>
-          <input id='maxSize' name='maxSize' type='number' onChange={handleChange} value={classData.maxSize} />
+          <label htmlFor='maxsize'>Maximum Class Size</label>
+          <input id='maxsize' name='maxsize' type='number' onChange={handleChange} value={classData.maxsize} />
         </div>
 
         <div className='submitButton'>
