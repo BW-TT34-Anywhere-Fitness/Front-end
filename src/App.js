@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import Home from 'components/Home';
 import Navbar from 'components/Navbar';
-import ClientDash from 'components/ClientDash';
+import ClientDash from 'components/ClientDash/ClientDash';
 import InstructorDash from 'components/InstructorDash';
 import LandingPage from 'components/LandingPage';
 
