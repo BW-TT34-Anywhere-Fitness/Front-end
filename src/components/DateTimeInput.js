@@ -19,7 +19,7 @@ const DateTimeInput = (props) => {
       }
     });
   }
-  console.log(value)
+  // console.log(value)
 
   const yesterday = moment().subtract(1, 'day');
   const noPastDates = current => {

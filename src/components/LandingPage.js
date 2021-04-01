@@ -7,8 +7,8 @@ import banner1 from '../girltrainersquat.jpg';
 import axios from 'axios';
 const initialValues = {
     credentials: {
-        username: '',
-        password: '',
+        username: 'testinstructor',
+        password: 'testinstructor',
     }
 
 }
@@ -26,12 +26,13 @@ const LandingPage = () => {
     }
     const handleSubmit = e => {
         e.preventDefault()
+        console.log(creds)
         axios
             .post('http://xnor.space/api/authenticate', creds.credentials)
             .then(res => {
                 console.log(res.data)
-                localStorage.setItem('token', res.data.payload)
-                window.location.href = '/'
+                localStorage.setItem('token', res.data.id_token)
+                // window.location.href = '/'
             })
             .catch(err => {
                 console.log(err)
