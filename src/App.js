@@ -46,11 +46,8 @@ function App() {
           setCurrentUser(res.data);
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
-    }
-    else {
-      console.log('no token');
     }
   }
 

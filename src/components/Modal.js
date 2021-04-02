@@ -18,7 +18,6 @@ function Modal(props) {
   const { isOpen, closeModal, backgroundColor, children } = props;
 
   const handleCloseClick = (e) => {
-    console.log(e);
     if (closeModal) {
       closeModal();
     }

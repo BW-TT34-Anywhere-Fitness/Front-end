@@ -16,7 +16,6 @@ const InstructorDash = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Scheduling class:', classData);
     onSubmit(classData);
   }
 

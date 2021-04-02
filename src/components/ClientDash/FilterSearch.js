@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 
+import axiosWithAuth from '../../functions/axiosWithAuth'
 
 import { StyledButton } from 'components/StyledComponents'
 import DateTimeInput from 'components/DateTimeInput'
@@ -16,7 +17,6 @@ const initialFilter = {
   intensity: '',
   dateFrom: '',
   dateTo: '',
-  time: '',
 }
 
 export default function FilterSearch(props){
@@ -86,16 +86,37 @@ export default function FilterSearch(props){
     // type = type
     // name = name
     // loc = location
-    console.log('params:', filter)
+    // console.log('params:', filter)
+
+    const params = { 
+      mnd: filter.dateFrom.split('T')[0],
+      mxd: filter.dateTo.split('T')[0],
+      mnt: filter.dateFrom.split('T')[1] || '',
+      mxt: filter.dateTo.split('T')[1] || '',
+      mni: filter.intensity,
+      mxi: filter.intensity,
+      loc: filter.zip,
+      type: filter.type,
+    }
+
+    console.log('params:', params)
+
+    let string = '?'
+    for(let key in params){
+      if(params[key] !== '')
+        string += `${key}=${params[key]}&`
+    }
 
     // axios.get('http://xnor.space/api/courses/search', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
-    searchClasses()
-      .then( res => {
+    // searchClasses()
+    // axiosWithAuth().get(`/courses/search?mnt=00:00:00&mxt=23:59:59&mnd=1970-01-01&mxd=2100-12-31&mndr=PT0.000S&mxdr=PT24H&mni=0&mxi=10000&type=lorem&name=ipsum&loc=mars&nf=1&ins=testinstructor&`)
+    axiosWithAuth().get(`/courses/search${string}`)
+    .then( res => {
         console.log(res)
         setResults(res.data)
       })
       .catch( err => {
-        console.log(err.response)
+        console.log(err, err.response)
       })
   }
 
@@ -156,8 +177,8 @@ export default function FilterSearch(props){
             onChange={onChange}
           >
             <option value=''> Any </option>
-            {intensities.map(intensity => (
-              <option value={intensity} key={intensity}>{intensity}</option>
+            {intensities.map((intensity, i) => (
+              <option value={i+1} key={intensity}>{intensity}</option>
             ))}
           </select>
         </div>

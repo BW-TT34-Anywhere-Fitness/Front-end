@@ -42,13 +42,13 @@ const LandingPage = (props) => {
         setError('');
         login(creds.credentials)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 localStorage.setItem('token', res.data.id_token);
                 updateUser();
                 history.push('/dashboard');
             })
             .catch(err => {
-                console.log(err.response);
+                // console.log(err.response);
 
                 let errorMessage = errorCodeMessages.default;
                 if (err.response) {

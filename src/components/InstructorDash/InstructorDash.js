@@ -24,13 +24,9 @@ const initialFormData = {
 const InstructorDash = (props) => {
 
   const [ classes, setClasses ] = useState(null);
-  const [ classToCreate, setClassToCreate ] = useState(initialFormData);
   const [ classToEdit, setClassToEdit ] = useState(null);
   const [ classToDelete, setClassToDelete ] = useState(null);
-
-  useEffect(() => {
-    console.log(classToDelete);
-  }, [ classToDelete ]);
+  const [ success, setSuccess ] = useState(false);
 
   useEffect(() => {
     handleGetClasses();
@@ -39,46 +35,43 @@ const InstructorDash = (props) => {
   const handleGetClasses = () => {
     getClasses()
       .then(res => {
-        console.log(res);
         setClasses(res?.data);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
   const handleCreateClass = (classData) => {
     createClass(classData)
       .then(res => {
-        console.log(res);
-        handleGetClasses();
+        setClasses( ...res.data, classes );
+        setSuccess(true);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
   const handleDeleteClass = (classData) => {
     deleteClass(classData)
       .then(res => {
-        console.log(res);
         setClasses(classes.filter(c => c.id !== classData.id));
         setClassToDelete(null);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
   const handleEditClass = (classData) => {
     editClass(classData)
       .then(res => {
-        console.log(res);
         setClasses(classes.map(c => c.id !== classData.id ? c : classData));
         setClassToEdit(null);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
@@ -91,7 +84,8 @@ const InstructorDash = (props) => {
 
       <h2>Schedule a Class</h2>
 
-      <ClassForm onSubmit={handleCreateClass} initialValue={classToCreate} />
+      <ClassForm onSubmit={handleCreateClass} initialValue={initialFormData} />
+      {success ? <p>Your class has been scheduled!</p> : <></>}
 
       <InstructorClassList classes={classes} setClassToEdit={setClassToEdit} setClassToDelete={setClassToDelete} />
 
@@ -114,6 +108,7 @@ const InstructorDash = (props) => {
           </div>
         </div>
       </Modal>
+
     </StyledMain>
   );
 }

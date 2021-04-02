@@ -17,15 +17,15 @@ export default function SignUpForm() {
     }
     const formSubmit = (e) => {
         e.preventDefault();
-        console.log(formValues);
+        // console.log(formValues);
         setIsLoading(true);
         signUp(formValues)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 setSuccess(true);
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
             })
             .finally(() => {
                 setIsLoading(false);
