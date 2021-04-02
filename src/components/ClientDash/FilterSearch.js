@@ -94,7 +94,7 @@ export default function FilterSearch(props){
       mnt: filter.dateFrom.split('T')[1] || '',
       mxt: filter.dateTo.split('T')[1] || '',
       mni: filter.intensity,
-      nxi: filter.intensity,
+      mxi: filter.intensity,
       loc: filter.zip,
       type: filter.type,
     }
@@ -177,8 +177,8 @@ export default function FilterSearch(props){
             onChange={onChange}
           >
             <option value=''> Any </option>
-            {intensities.map(intensity => (
-              <option value={intensity} key={intensity}>{intensity}</option>
+            {intensities.map((intensity, i) => (
+              <option value={i+1} key={intensity}>{intensity}</option>
             ))}
           </select>
         </div>
