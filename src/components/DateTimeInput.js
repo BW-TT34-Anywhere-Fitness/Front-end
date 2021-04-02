@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import Datetime from 'react-datetime';
 
-const localDateTimeFormat = 'YYYY-MM-DDTHH:mm:ss';
+const localDateTimeFormat = 'YYYY-MM-DDTHH:mm:ssZ';
 
 
 
@@ -15,7 +15,7 @@ const DateTimeInput = (props) => {
       target: {
         name: 'starttime',
         id: props.id,
-        value: date.format(localDateTimeFormat)
+        value: date?.format ? date.format(localDateTimeFormat): ''
       }
     });
   }
