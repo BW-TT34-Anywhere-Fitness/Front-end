@@ -78,7 +78,7 @@ export default function FindClass(props){
 
   function setNewClasses(results){
     const today = new Date().toISOString().split('T')[0].split('-').join('');
-    console.log(results[0].starttime.split('T')[0].split('-').join('') < today)
+    // console.log(results[0].starttime.split('T')[0].split('-').join('') < today)
     setResults(results.filter( obj => !myClassIDS.includes(obj.id) && obj.starttime.split('T')[0].split('-').join('') > today))
     // setResults(results.filter( obj => {
     //   // console.log(obj.starttime.split('T')[0].split('-').join(''))
