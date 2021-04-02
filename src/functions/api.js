@@ -25,6 +25,14 @@ export const createClass = (classData) => {
   return axiosWithAuth().post('/courses', classData);
 }
 
+export const editClass = (classData) => {
+  return axiosWithAuth().put(`/courses/${classData?.id}`, classData);
+}
+
+export const deleteClass = (classData) => {
+  return axiosWithAuth().delete(`/courses/${classData?.id}`);
+}
+
 export const getClasses = () => {
   return axiosWithAuth().get('/courses');
 }
