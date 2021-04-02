@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 import { StyledButton } from 'components/StyledComponents';
 import DateTimeInput from 'components/DateTimeInput';
+import DurationInput from 'components/DurationInput';
 
 import useForm from 'hooks/useForm';
 
 
 
 const InstructorDash = (props) => {
-  const { initialValue, onSubmit } = props;
+  const { value, onSubmit, buttonText='Schedule Class' } = props;
 
-  const [classData, handleChange] = useForm(initialValue);
+  const [classData, handleChange] = useForm(value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Scheduling class:', classData);
     onSubmit(classData);
   }
 
@@ -40,7 +40,7 @@ const InstructorDash = (props) => {
 
         <div className='field'>
           <label htmlFor='duration'>Duration (Minutes)</label>
-          <input id='duration' name='duration' type='number' onChange={handleChange} value={classData.duration} />
+          <DurationInput id='duration' name='duration' onChange={handleChange} value={classData.duration} />
         </div>
 
         <div className='field'>
@@ -48,14 +48,14 @@ const InstructorDash = (props) => {
           <select name='intensity' id='intensity' value={classData.intensity} onChange={handleChange}>
             <option disabled value=''> - Select a level - </option>
             {[ ...Array(10).keys() ].map(intensity => (
-              <option value={intensity} key={intensity}>{intensity}</option>
+              <option value={intensity+1} key={intensity}>{intensity+1}</option>
             ))}
           </select>
         </div>
 
         <div className='field'>
-          <label htmlFor='location'>Location (zip code)</label>
-          <input id='location' name='location' type='number' onChange={handleChange} value={classData.location} />
+          <label htmlFor='location'>Location</label>
+          <input id='location' name='location' onChange={handleChange} value={classData.location} />
         </div>
 
         <div className='field'>
@@ -65,7 +65,7 @@ const InstructorDash = (props) => {
 
         <div className='submitButton'>
           <StyledButton size='md'>
-            Schedule Class
+            {buttonText}
           </StyledButton>
         </div>
 
@@ -96,6 +96,7 @@ const StyledMain = styled.div`
 
   .submitButton {
     padding-top: 3em;
+    padding-bottom: 1em;
   }
 `;
 

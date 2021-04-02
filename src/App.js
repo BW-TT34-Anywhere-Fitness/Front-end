@@ -28,10 +28,6 @@ function App() {
   const [ currentUser, setCurrentUser ] = useState(null);
 
   useEffect(() => {
-    // console.log('UserContext.currentUser:', currentUser);
-  }, [ currentUser ]);
-
-  useEffect(() => {
     // When page is first opened, check for a previously logged in user.
     updateUser();
   }, []);
@@ -52,9 +48,6 @@ function App() {
         .catch(err => {
           // console.log(err);
         });
-    }
-    else {
-      // console.log('no token');
     }
   }
 

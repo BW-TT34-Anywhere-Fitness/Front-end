@@ -6,11 +6,11 @@ import styled from 'styled-components';
  * variant options: filled, outlined
  */
 export const StyledButton = (props) => {
-  const { children, size = 'md', variant = 'filled', fit, style={} } = props;
+  const { children, size = 'md', variant = 'filled', fit, onClick, style={} } = props;
 
   return (
     <StyledMain style={{ width: fit && '100%', ...style }}>
-      <button className={`${size} ${variant} ${fit ? 'fit' : ''}`}>
+      <button className={`${size} ${variant} ${fit ? 'fit' : ''}`} onClick={onClick}>
         {children}
       </button>
     </StyledMain>
@@ -32,7 +32,7 @@ export const StyledMain = styled.div`
     
     // md
     font-size: 0.8em;
-    line-height: 3.5em;
+    height: 3.5em;
     
     // filled
     background: ${props => props.theme.main};
@@ -42,7 +42,6 @@ export const StyledMain = styled.div`
   .lg {
     font-size: 1.25em;
     height: 3em;
-    line-height: 3em;
   }
 
   .sm {
