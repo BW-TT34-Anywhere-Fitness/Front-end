@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { StyledTitle } from 'components/StyledComponents';
+import { StyledButton, StyledTitle } from 'components/StyledComponents';
 import ClassForm from 'components/ClassForm';
 import InstructorClassList from './InstructorClassList';
 import Modal from 'components/Modal';
@@ -24,9 +24,9 @@ const initialFormData = {
 const InstructorDash = (props) => {
 
   const [ classes, setClasses ] = useState(null);
+  const [ classToCreate, setClassToCreate ] = useState(null);
   const [ classToEdit, setClassToEdit ] = useState(null);
   const [ classToDelete, setClassToDelete ] = useState(null);
-  const [ success, setSuccess ] = useState(false);
 
   useEffect(() => {
     handleGetClasses();
@@ -45,8 +45,8 @@ const InstructorDash = (props) => {
   const handleCreateClass = (classData) => {
     createClass(classData)
       .then(res => {
-        setClasses( ...res.data, classes );
-        setSuccess(true);
+        setClasses([ res.data, ...classes ]);
+        setClassToCreate(null);
       })
       .catch(err => {
         // console.log(err);
@@ -82,18 +82,31 @@ const InstructorDash = (props) => {
         <h1>Instructor Dashboard</h1>
       </StyledTitle>
 
-      <h2>Schedule a Class</h2>
+      {/* <h2>Schedule a Class</h2> */}
 
-      <ClassForm onSubmit={handleCreateClass} initialValue={initialFormData} />
-      {success ? <p>Your class has been scheduled!</p> : <></>}
+      {/* <ClassForm onSubmit={handleCreateClass} initialValue={initialFormData} />
+      {success ? <p>Your class has been scheduled!</p> : <></>} */}
+
+      <StyledButton onClick={() => setClassToCreate(initialFormData)}>Schedule a class</StyledButton>
 
       <InstructorClassList classes={classes} setClassToEdit={setClassToEdit} setClassToDelete={setClassToDelete} />
 
-      {/* Edit Class Modal */}
-      <Modal isOpen={classToEdit} closeModal={() => setClassToEdit(null)} backgroundColor='#242943'>
+      {/* Create Class Modal */}
+      <Modal isOpen={classToCreate} closeModal={() => setClassToCreate(null)}>
         <div className='modal-div'>
+          <StyledTitle>
+            <h2>Scheduling Class</h2>
+          </StyledTitle>
+          <ClassForm value={classToCreate} onSubmit={handleCreateClass} buttonText='Schedule Class' />
+        </div>
+      </Modal>
 
-          <h2>Editing Class</h2>
+      {/* Edit Class Modal */}
+      <Modal isOpen={classToEdit} closeModal={() => setClassToEdit(null)}>
+        <div className='modal-div'>
+          <StyledTitle>
+            <h2>Editing Class</h2>
+          </StyledTitle>
           <ClassForm value={classToEdit} onSubmit={handleEditClass} buttonText='Save Changes' />
         </div>
       </Modal>
@@ -114,10 +127,13 @@ const InstructorDash = (props) => {
 }
 
 const StyledMain = styled.section`
-  max-width: 1400px;
+
+  max-width: 800px;
   margin: auto;
-  padding-bottom: 10em;
   padding: 1em;
+
+  flex-direction: 'row';
+  flex-wrap: wrap;
 
   input, select, option, textArea {
     border: none;
