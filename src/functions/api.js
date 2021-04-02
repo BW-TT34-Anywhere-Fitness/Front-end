@@ -13,12 +13,16 @@ export const login = ( loginData ) => {
 
 // Takes userData and creates a new user. props: login, password, accounttype (student/instructor)
 export const signUp = ( userData ) => {
-  return axios.post('/register', userData);
+  return axios.post(`${BASE_URL}/register`, userData);
 }
 
 // Returns info of the currently logged in user.
 export const getSelf = () => {
   return axiosWithAuth().get('/account');
+}
+
+export const editUser = (userData) => {
+  return axiosWithAuth().post(`/account`, userData);
 }
 
 export const createClass = (classData) => {

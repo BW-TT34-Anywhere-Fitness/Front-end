@@ -75,6 +75,9 @@ const InstructorDash = (props) => {
 }
 
 const StyledMain = styled.div`
+
+  border-bottom: 2px solid ${props => props.theme.border};
+
   .field {
     padding-top: 1.5em;
   }
