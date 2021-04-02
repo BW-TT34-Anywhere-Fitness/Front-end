@@ -13,7 +13,7 @@ const DateTimeInput = (props) => {
   const handleChange = (date) => {
     onChange({
       target: {
-        name: 'dateTime',
+        name: 'starttime',
         id: props.id,
         value: date.format(localDateTimeFormat)
       }
@@ -33,7 +33,7 @@ const DateTimeInput = (props) => {
         inputProps={{
           placeholder: props.placeholder ? props.placeholder : '- Select a date & time below -',
         }}
-        value={value ? moment.utc(value, localDateTimeFormat) : moment()}
+        value={value ? moment.utc(value, localDateTimeFormat) : null}
       />
     </StyledMain>
   );

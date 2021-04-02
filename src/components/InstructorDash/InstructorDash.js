@@ -3,18 +3,18 @@ import styled from 'styled-components';
 
 import { StyledTitle } from 'components/StyledComponents';
 import ClassForm from 'components/ClassForm';
-import ClassList from 'components/ClassList';
+import InstructorClassList from './InstructorClassList';
 
 import { createClass } from 'functions/api';
 
 const initialClassData = {
   name: '',
   type: '',
-  dateTime: '',
+  starttime: '',
   duration: '',
   intensity: '',
   location: '',
-  maxSize: '',
+  maxsize: '',
 }
 
 
@@ -42,7 +42,7 @@ const InstructorDash = (props) => {
 
       <ClassForm onSubmit={handleSubmit} initialValue={initialClassData} />
 
-      <ClassList />
+      <InstructorClassList />
 
     </StyledMain>
   );

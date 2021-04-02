@@ -34,6 +34,10 @@ const Navbar = (props) => {
                 </Link>
               : <></>}
               
+              {/* <Link to='/profile'>
+                <div className='navText'>Profile</div>
+              </Link> */}
+              
               <Link to='/' onClick={logOut}>
                 <div className='navText'>Log Out</div>
               </Link>
@@ -68,6 +72,7 @@ const StyledNavbar = styled.header`
     text-transform: uppercase;
     white-space: nowrap;
     padding: 0 15px;
+    transition: .4s;
   }
 
   .whiteBox {
@@ -76,6 +81,15 @@ const StyledNavbar = styled.header`
     padding: 0 0.125em 0 0.375em;
     line-height: 1.65em;
     display: inline-block;
+    transition: .4s;
+  }
+
+  
+  .navText:hover {
+    color: ${props => props.theme.selected};
+    .whiteBox {
+      background-color: ${props => props.theme.selected};
+    }
   }
 `;
 
