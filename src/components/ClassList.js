@@ -12,10 +12,10 @@ const ClassList = (props) => {
   useEffect(() => {
     getClasses()
       .then(res => {
-        console.log(res);
+        // console.log(res);
       })
       .catch(err => {
-        console.error(err);
+        // console.error(err);
       })
   });
 

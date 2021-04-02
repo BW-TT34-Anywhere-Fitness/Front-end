@@ -12,11 +12,11 @@ export default function LoginForm() {
         e.preventDefault();
         axios.post("https://xnor.space/api/authenticate", formValues)
         .then((res)=>{
-            console.log(res)
+            // console.log(res)
             localStorage.setItem("token", res.data.id_token)
         })
         .catch((err)=>{
-            console.log(err)
+            // console.log(err)
         })
     }
     
