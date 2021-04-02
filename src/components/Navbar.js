@@ -34,9 +34,9 @@ const Navbar = (props) => {
                 </Link>
               : <></>}
               
-              {/* <Link to='/profile'>
+              <Link to='/profile'>
                 <div className='navText'>Profile</div>
-              </Link> */}
+              </Link>
               
               <Link to='/' onClick={logOut}>
                 <div className='navText'>Log Out</div>
