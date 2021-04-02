@@ -9,8 +9,8 @@ import UserContext from 'contexts/UserContext';
 import { login } from 'functions/api';
 const initialValues = {
     credentials: {
-        username: 'testinstructor',
-        password: 'testinstructor',
+        username: 'testuser',
+        password: 'testuser',
     }
 
 }
