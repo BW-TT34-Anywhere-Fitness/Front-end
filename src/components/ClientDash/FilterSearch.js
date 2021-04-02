@@ -30,7 +30,8 @@ export default function FilterSearch(props){
   useEffect(() => {
     // check if browser compatible
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(() => {console.log('placeholder so I don\'t use the api each time')}, fail);
+      // navigator.geolocation.getCurrentPosition(() => {console.log('placeholder so I don\'t use the api each time')}, fail);
+      navigator.geolocation.getCurrentPosition(getPosition, fail);
     } else {
       console.log("Geolocation is not supported by this browser.")
       fail()
