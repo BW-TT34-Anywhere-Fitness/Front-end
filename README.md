@@ -1,6 +1,6 @@
 # 🏃 Anywhere Fitness 🏋️
 
-![image](https://user-images.githubusercontent.com/22039228/115171249-8225cd80-a077-11eb-8f4b-ded3abee0563.png)
+![image](https://user-images.githubusercontent.com/22039228/115171314-a7b2d700-a077-11eb-931c-68f510b80b0d.png)
 
 - [🌐 Live Website](https://anywhere-fitness-rho.vercel.app/)
 
