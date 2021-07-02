@@ -208,7 +208,7 @@ const StyleSpan = styled.span`
 /*SCROLL BODY BANNERS */
 const StyledBannerOne = styled.div`
 background-image: url(${banner1});
-width: 1600px;
+width: 100%;
 height:900px;
     
 `
