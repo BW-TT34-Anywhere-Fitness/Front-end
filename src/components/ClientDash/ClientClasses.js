@@ -55,20 +55,29 @@ export default function FindClass(props) {
   useEffect(() => {
     // axios.get('http://xnor.space/api/account/courses', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
     getMyClasses()
+
       .then(res => {
         console.log(res)
         setResults(res.data)
       })
       .catch(err => {
         console.log(err)
+
       })
   }, [])
 
+  function withdraw(id) {
+    // console.log('hi')
+    setResults(results.filter(obj => obj.id !== id))
+  }
+
   return (
+
     <div style={{ display: 'flex' }} >
       <div style={{ marginLeft: '40px', flexGrow: 1 }}>
-        {results && results.length > 0 ? results.map((lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i % 2} Component={Withdraw} />)
+        {results && results.length > 0 ? results.map((lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i % 2} Component={Withdraw} update={withdraw} />)
           : <p>You don't have any classes yet.</p>}
+
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 import React, {useState} from 'react'
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
@@ -17,15 +17,16 @@ export default function SignUpForm() {
     }
     const formSubmit = (e) => {
         e.preventDefault();
-        console.log(formValues);
+        // console.log(formValues);
         setIsLoading(true);
         signUp(formValues)
             .then(res => {
-                console.log(res);
+                // console.log(res);
+                setFormValues({login:"", password:"",email:"", accounttype:"student"});
                 setSuccess(true);
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -56,6 +57,26 @@ export default function SignUpForm() {
                 type = "email"
                 name = "email"
                 value = {formValues.email}
+                onChange = {handleChange}
+                disabled={isLoading}
+            />
+            <br/>
+            <LabelStyled htmlFor ='firstName'>First Name</LabelStyled>
+            <InputStyled
+                id='firstName'
+                type = "firstName"
+                name = "firstName"
+                value = {formValues.firstName || ''}
+                onChange = {handleChange}
+                disabled={isLoading}
+            />
+            <br/>
+            <LabelStyled htmlFor ='lastName'>Last Name</LabelStyled>
+            <InputStyled
+                id='lastName'
+                type = "lastName"
+                name = "lastName"
+                value = {formValues.lastName || ''}
                 onChange = {handleChange}
                 disabled={isLoading}
             />

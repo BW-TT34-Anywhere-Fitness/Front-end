@@ -4,7 +4,7 @@ const background1 = '#282F56'
 const background2 = '#2A2F4A'
 
 export default function ClientClassCard(props){
-  const { Component } = props
+  const { Component, update } = props
 
   const {
     instructor,
@@ -25,7 +25,7 @@ export default function ClientClassCard(props){
         <p>Date: {time}</p>
         <p>Time: {time}</p>
       </DivContent>
-      <Component id={id}/>
+      <Component id={id} update={update}/>
     </DivMain>
   )
 }

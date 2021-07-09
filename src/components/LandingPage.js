@@ -147,7 +147,7 @@ const LandingPage = (props) => {
 
             </StyledAboutTwo>
 
-            {/* <Comments /> */}
+
             <StyledFooter>
 
             </StyledFooter>

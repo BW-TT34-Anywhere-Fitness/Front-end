@@ -18,7 +18,7 @@ const useForm = ( initialValues ) => {
     setForm(initialValues);
   }
 
-  return [ form, handleChange, clearForm ];
+  return [ form, handleChange, setForm, clearForm ];
 }
 
 export default useForm;

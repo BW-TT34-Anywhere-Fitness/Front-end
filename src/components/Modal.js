@@ -9,20 +9,20 @@ import styled from 'styled-components';
  * 
  * To use it, wrap the stuff that you want inside the modal like so:
  * 
- * <Modal isOpen={modalOpen} setOpen={setModalOpen}>
+ * <Modal isOpen={modalOpen} close={closeModal}>
  *   <p> My thing </p>
  * </Modal>
  */
 
 function Modal(props) {
-  const { isOpen, setOpen, children } = props;
+  const { isOpen, closeModal, backgroundColor, children } = props;
 
-  const close = () => {
-    if (setOpen) {
-      setOpen(false);
+  const handleCloseClick = (e) => {
+    if (closeModal) {
+      closeModal();
     }
     else {
-      console.warn('Modal has no setOpen function.')
+      console.warn('Modal has no closeModal function.')
     }
   }
 
@@ -33,12 +33,13 @@ function Modal(props) {
   if (!isOpen) return <></>
 
   return (
-    <ModalDiv onClick={close}>
+    <ModalDiv onClick={handleCloseClick}>
       <div
         className='children-div'
         onClick={
           e => e.stopPropagation() // This prevents the modal from closing when the user clicks inside.
         }
+        style={{background: {backgroundColor}}}
       >
         {children}
       </div>
@@ -68,9 +69,11 @@ const ModalDiv = styled.div`
 
   .children-div {
     cursor: default;
-    background: white;
+    background: ${props => props.theme.background};
     padding: 10px;
     border-radius: 5px;
     box-shadow: 2px 4px 4px 1px hsla(0, 0%, 0%, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
   }
 `;

@@ -1,33 +1,28 @@
 
-import { useEffect, useState } from 'react';
-import { getMyClasses } from 'functions/api';
+import InstructorClassListItem from './instructorClassListItem';
+
+
 
 const InstructorClassList = (props) => {
 
-  const [ myClasses, setMyClasses ] = useState([]);
-  const [ isLoading, setIsLoading ] = useState(false);
+  const { classes, setClassToEdit, setClassToDelete } = props;
 
-  useEffect(() => {
-    getMyClasses()
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
-  if (!myClasses) {
+  if (!classes) {
     return <></>
   }
 
   return (
     <>
       <h2>Your Classes</h2>
-      {myClasses.length > 0
+      {classes.length > 0
         ?
-          myClasses.map(myClass => (
-            <div>class</div>
+          classes.map(afClass => (
+            <InstructorClassListItem
+              afClass={afClass}
+              onEditClick={() => setClassToEdit(afClass)}
+              onDeleteClick={() => setClassToDelete(afClass)}
+              key={afClass.id}
+            />
           ))
         :
           <p>No classes found.</p>
