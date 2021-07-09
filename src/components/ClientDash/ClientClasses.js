@@ -45,30 +45,30 @@ const example = [
     "users": [],
     "instructor": 'Bob'
   },
-  
+
 ]
 
-export default function FindClass(props){
+export default function FindClass(props) {
   const [results, setResults] = useState(example)
   const [errors, setErrors] = useState()
 
   useEffect(() => {
     // axios.get('http://xnor.space/api/account/courses', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
     getMyClasses()
-      .then( res => {
+      .then(res => {
         console.log(res)
         setResults(res.data)
       })
-      .catch( err => {
+      .catch(err => {
         console.log(err)
       })
   }, [])
 
   return (
-    <div style={{display: 'flex'}} >
-      <div style={{marginLeft: '40px', flexGrow: 1}}>
-        {results && results.length > 0 ? results.map( (lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i%2} Component={Withdraw}/>)
-        : <p>You don't have any classes yet.</p>}
+    <div style={{ display: 'flex' }} >
+      <div style={{ marginLeft: '40px', flexGrow: 1 }}>
+        {results && results.length > 0 ? results.map((lesson, i) => <ClientClassCard key={lesson.id} class={lesson} color={i % 2} Component={Withdraw} />)
+          : <p>You don't have any classes yet.</p>}
       </div>
     </div>
   )

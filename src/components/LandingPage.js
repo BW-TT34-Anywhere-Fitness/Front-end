@@ -7,6 +7,7 @@ import banner1 from '../girltrainersquat.jpg';
 import axios from 'axios';
 import UserContext from 'contexts/UserContext';
 import { login } from 'functions/api';
+import Comments from './StyledComponents/Comments'
 const initialValues = {
     credentials: {
         username: 'testinstructor',
@@ -25,7 +26,7 @@ const LandingPage = (props) => {
     const { currentUser, updateUser } = useContext(UserContext);
 
     const [creds, setCreds] = useState(initialValues);
-    const [ error, setError ] = useState('');
+    const [error, setError] = useState('');
 
     const history = useHistory();
 
@@ -84,37 +85,37 @@ const LandingPage = (props) => {
                     <StyledFormBox>
                         <FormCenterHorz>
                             {!currentUser ?
-                            <StyledForm onSubmit={handleSubmit}>
+                                <StyledForm onSubmit={handleSubmit}>
 
-                                <StyledFSep>
-                                    <StyledInput
-                                        type="text"
-                                        name='username'
-                                        value={creds.credentials.username}
-                                        onChange={handleChange}
-                                    />
-                                </StyledFSep>
-                                <StyledFSep>
-                                    <StyledInput
-                                        type="password"
-                                        name="password"
-                                        value={creds.credentials.password}
-                                        onChange={handleChange}
-                                    />
-                                </StyledFSep>
-                                <StyledButton>
-                                    <StyleP>Log In</StyleP>
-                                </StyledButton>
+                                    <StyledFSep>
+                                        <StyledInput
+                                            type="text"
+                                            name='username'
+                                            value={creds.credentials.username}
+                                            onChange={handleChange}
+                                        />
+                                    </StyledFSep>
+                                    <StyledFSep>
+                                        <StyledInput
+                                            type="password"
+                                            name="password"
+                                            value={creds.credentials.password}
+                                            onChange={handleChange}
+                                        />
+                                    </StyledFSep>
+                                    <StyledButton>
+                                        <StyleP>Log In</StyleP>
+                                    </StyledButton>
+                                    <StyledTextBox>
+                                        <StylePDark>Forgot Password?</StylePDark>
+                                    </StyledTextBox>
+
+
+                                </StyledForm>
+                                :
                                 <StyledTextBox>
-                                    <StylePDark>Forgot Password?</StylePDark>
+                                    <StylePDark>You're already logged in!</StylePDark>
                                 </StyledTextBox>
-
-
-                            </StyledForm>
-                            :
-                            <StyledTextBox>
-                                <StylePDark>You're already logged in!</StylePDark>
-                            </StyledTextBox>
                             }
                         </FormCenterHorz>
                         <FormCenterHorzB>
@@ -146,7 +147,7 @@ const LandingPage = (props) => {
 
             </StyledAboutTwo>
 
-
+            {/* <Comments /> */}
             <StyledFooter>
 
             </StyledFooter>
@@ -161,8 +162,9 @@ export default LandingPage
 /*GLOBAL CONTAINER LAYOUT STYLES BELOW*/
 const StyledContainer = styled.div`
 display:flex;
+width:100%;
 justify-content:center;
-align-items: center;
+// align-items: center;
 flex-direction: column;
 
 
@@ -207,9 +209,14 @@ const StyleSpan = styled.span`
 `
 /*SCROLL BODY BANNERS */
 const StyledBannerOne = styled.div`
+display:flex;
 background-image: url(${banner1});
-width: 1600px;
-height:900px;
+@media(max-width:796px) {
+    background-image: none;
+    justify-content:center;
+}
+width: 100%;
+// height:900px;
     
 `
 
@@ -217,6 +224,7 @@ height:900px;
 /*BODY CONTAINER LAYOUT STYLES BELOW*/
 const StyledAbout = styled.div`
 display:flex;
+
 
 `
 const StyledFormBox = styled.div`
@@ -229,6 +237,12 @@ height:350px;
 flex-direction:column;
 justify-content:space-evenly;
 border-radius:4px;
+@media(max-width:796px) {
+    width:100%;
+    margin:0;
+}
+
+
 `
 
 /*FORM LAYOUT STYLES BELOW*/
@@ -302,6 +316,7 @@ const StyledPicBox = styled.div`
 }
 `
 const StyledImg = styled.img`
+
 padding:40px;
 width:667px;
 
